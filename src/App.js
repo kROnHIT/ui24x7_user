@@ -37,7 +37,7 @@ class App extends React.Component {
             <StatusBar
               barStyle="light-content"
               hidden={false}
-              backgroundColor="#e32f45"
+              backgroundColor="#5a67d8"
               // backgroundColor={theme['color-primary-700']}
             />
             <BottomNavigation />

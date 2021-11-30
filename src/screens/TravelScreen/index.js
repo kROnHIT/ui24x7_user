@@ -13,12 +13,12 @@ import {Table, Row, Rows} from 'react-native-table-component';
 import {TopNavigation, Text, Divider} from '@ui-kitten/components';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-export default Profile = props => {
+export default Travel = props => {
   const isFocused = useIsFocused();
-  return isFocused ? <ProfileWrapper {...props} /> : null;
+  return isFocused ? <TravelWrapper {...props} /> : null;
 };
 
-class Profile extends React.Component {
+class Travel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -117,4 +117,4 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
-const ProfileWrapper = connect(mapStateToProps, mapDispatchToProps)(Profile);
+const TravelWrapper = connect(mapStateToProps, mapDispatchToProps)(Travel);

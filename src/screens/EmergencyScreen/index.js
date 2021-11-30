@@ -12,57 +12,28 @@ import {useIsFocused} from '@react-navigation/native';
 import {Table, Row, Rows} from 'react-native-table-component';
 import {TopNavigation, Text, Divider} from '@ui-kitten/components';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Header from "../TopHeader"
 
-export default Profile = props => {
+export default Emergency = props => {
   const isFocused = useIsFocused();
-  return isFocused ? <ProfileWrapper {...props} /> : null;
+  return isFocused ? <EmergencyWrapper {...props} /> : null;
 };
 
-class Profile extends React.Component {
+class Emergency extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   componentDidMount() {}
-  RenderHeaderTitle = () => {
-    return (
-      <TouchableOpacity
-        style={{width: 25, alignItems: 'center'}}
-        onPress={() => this.props.navigation.navigate('Home')}>
-        <View style={{flexDirection: 'row'}}>
-          <FontAwesome5 name="chevron-left" size={20} color="#ffffff" />
-        </View>
-      </TouchableOpacity>
-    );
-  };
-
-  RenderRightTitle = () => {
-    return (
-      <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
-          <FontAwesome5 name="align-left" size={20} color="#ffffff" />
-        </TouchableOpacity>
-      </View>
-    );
-  };
+  
 
   render() {
     return (
       <View style={styles.container}>
+        <Header />
         <View>
-          <TopNavigation
-            alignment="center"
-            title={
-              <Text
-                style={{color: '#ffffff', fontSize: 16, fontWeight: 'bold'}}>
-                About Us
-              </Text>
-            }
-            accessoryLeft={this.RenderHeaderTitle}
-            accessoryRight={this.RenderRightTitle}
-            style={{backgroundColor: '#05357a', paddingHorizontal: 20}}
-          />
+          
         </View>
         <ScrollView
           style={{paddingHorizontal: 10}}
@@ -117,4 +88,4 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
-const ProfileWrapper = connect(mapStateToProps, mapDispatchToProps)(Profile);
+const EmergencyWrapper = connect(mapStateToProps, mapDispatchToProps)(Emergency);

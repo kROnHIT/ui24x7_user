@@ -119,7 +119,7 @@ const TabsScreen = () => {
           tabBarIcon: ({focused}) => (
             <View style={{alignItems: 'center', justifyContent: 'center'}}>
               <Image
-                source={require('../../asset/icons/emergency.png')}
+                source={require('../../asset/icons/chat.png')}
                 resizeMode="contain"
                 style={{
                   width: 25,
@@ -146,7 +146,7 @@ const TabsScreen = () => {
             <View style={{alignItems: 'center', justifyContent: 'center'}}>
               {/* {console.log("aaa", route)} */}
               <Image
-                source={require('../../asset/icons/booking.png')}
+                source={require('../../asset/icons/home.png')}
                 resizeMode="contain"
                 style={{
                   width: 25,
@@ -171,7 +171,7 @@ const TabsScreen = () => {
         options={{
           tabBarIcon: ({focused}) => (
             <Image
-              source={require('../../asset/icons/home.png')}
+              source={require('../../asset/icons/plus.png')}
               resizeMode="contain"
               style={{
                 width: 30,
@@ -190,7 +190,7 @@ const TabsScreen = () => {
           tabBarIcon: ({focused}) => (
             <View style={{alignItems: 'center', justifyContent: 'center'}}>
               <Image
-                source={require('../../asset/icons/travel.png')}
+                source={require('../../asset/icons/profile.png')}
                 resizeMode="contain"
                 style={{
                   width: 25,
@@ -216,7 +216,7 @@ const TabsScreen = () => {
           tabBarIcon: ({focused}) => (
             <View style={{alignItems: 'center', justifyContent: 'center'}}>
               <Image
-                source={require('../../asset/icons/services.png')}
+                source={require('../../asset/icons/settings.png')}
                 resizeMode="contain"
                 style={{
                   width: 25,
