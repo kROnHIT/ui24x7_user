@@ -9,6 +9,12 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const REGISTER_USER = "REGISTER_USER";
 export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
 export const REGISTER_USER_ERROR = "REGISTER_USER_ERROR";
+export const GET_STATE = "GET_STATE";
+export const GET_STATE_SUCCESS = "GET_STATE_SUCCESS";
+export const GET_STATE_ERROR = "GET_STATE_ERROR";
+export const GET_CITY = "GET_CITY";
+export const GET_CITY_SUCCESS = "GET_CITY_SUCCESS";
+export const GET_CITY_ERROR = "GET_CITY_ERROR";
 
 // Security
 export const ADD_SECURITY = "ADD_SECURITY";

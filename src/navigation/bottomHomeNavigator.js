@@ -14,6 +14,7 @@ import Login from '../screens/LoginScreen';
 import Register from '../screens/RegisterScreen';
 import Classified from '../screens/ClassifiedScreen';
 import Splash from '../screens/SplashScreen';
+import TopHeader from '../screens/TopHeader';
 
 const Tabs = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -38,7 +39,7 @@ const CustomTabButton = ({children, onPress}) => (
         width: 70,
         height: 70,
         borderRadius: 35,
-        backgroundColor: '#e32f45',
+        backgroundColor: '#5a67d8',
       }}>
       {children}
     </View>
@@ -75,6 +76,7 @@ function HomeStackScreen() {
   return (
     <HomeStack.Navigator headerMode={false}>
       <HomeStack.Screen name="Home" component={Home} />
+      <HomeStack.Screen name="Profile" component={Profile} />
     </HomeStack.Navigator>
   );
 }
@@ -124,12 +126,12 @@ const TabsScreen = () => {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? '#e32f45' : '#748c94',
+                  tintColor: focused ? '#5a67d8' : '#748c94',
                 }}
               />
               <Text
                 style={{
-                  color: focused ? '#e32f45' : '#748c94',
+                  color: focused ? '#5a67d8' : '#748c94',
                   fontSize: 12,
                 }}>
                 Emergency
@@ -151,12 +153,12 @@ const TabsScreen = () => {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? '#e32f45' : '#748c94',
+                  tintColor: focused ? '#5a67d8' : '#748c94',
                 }}
               />
               <Text
                 style={{
-                  color: focused ? '#e32f45' : '#748c94',
+                  color: focused ? '#5a67d8' : '#748c94',
                   fontSize: 12,
                 }}>
                 Booking
@@ -195,12 +197,12 @@ const TabsScreen = () => {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? '#e32f45' : '#748c94',
+                  tintColor: focused ? '#5a67d8' : '#748c94',
                 }}
               />
               <Text
                 style={{
-                  color: focused ? '#e32f45' : '#748c94',
+                  color: focused ? '#5a67d8' : '#748c94',
                   fontSize: 12,
                 }}>
                 Travel
@@ -221,12 +223,12 @@ const TabsScreen = () => {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? '#e32f45' : '#748c94',
+                  tintColor: focused ? '#5a67d8' : '#748c94',
                 }}
               />
               <Text
                 style={{
-                  color: focused ? '#e32f45' : '#748c94',
+                  color: focused ? '#5a67d8' : '#748c94',
                   fontSize: 12,
                 }}>
                 Services
@@ -268,6 +270,7 @@ const RootStackScreen = () => {
         }}
       />
       <RootStack.Screen name="LoginStackScreen" component={LoginStackScreen} />
+      <RootStack.Screen name="TopHeader" component={TopHeader} />
 
       <RootStack.Screen
         name="App"

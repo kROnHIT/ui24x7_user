@@ -5,7 +5,8 @@ import {
   Modal,
   TouchableOpacity,
   StyleSheet,
-  Image,
+  ScrollView,
+  Image
 } from 'react-native';
 import {
   Button,
@@ -16,10 +17,20 @@ import {
   Text,
 } from '@ui-kitten/components';
 import * as Animatable from 'react-native-animatable';
+import {getState, getCity} from '../../redux/actions';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-community/async-storage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useIsFocused} from '@react-navigation/native';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+export default Header = props => {
+  const isFocused = useIsFocused();
+  return isFocused ? <HeaderWrapper {...props} /> : null;
+};
+
 export const CloseIcon = () => (
   <FontAwesome name="close" size={18} color={'#cccccc'} />
 );
@@ -29,7 +40,8 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stateModalVisible: true,
+      stateModalVisible: false,
+      cityModalVisible: false,
     };
   }
 
@@ -51,17 +63,89 @@ class Header extends React.Component {
   };
 
   RenderRightTitle = () => {
+    console.log('nav', this.props);
     return (
       <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
-          <FontAwesome5 name="align-left" size={20} color="#ffffff" />
+        <TouchableOpacity onPress={() => this.props.props.navigation.navigate('Profile')}>
+          <Image
+            source={require('../../../asset/icons/man.png')}
+            resizeMode="contain"
+            style={{
+              width: 25,
+              height: 25,
+            }}
+          />
         </TouchableOpacity>
       </View>
     );
   };
 
   openStateLocation = visible => {
-    this.setState({stateModalVisible: visible});
+    this.setState({stateModalVisible: visible}, () => {
+      this.props.getState();
+    });
+  };
+
+  openCityModal = STATE_ID => {
+    this.setState({stateModalVisible: false, cityModalVisible: true}, () => {
+      this.props.getCity(STATE_ID);
+    });
+  };
+
+  stateList = () => {
+    const {state} = this.props.auth;
+    if (state) {
+      let stateListDate = state.map((value, key) => {
+        return (
+          <TouchableOpacity onPress={() => this.openCityModal(value.STATE_ID)}>
+            <View style={{height: 30, marginBottom: 5}}>
+              <Text category="h6" style={{}}>
+                {value.STATE_NAME}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        );
+      });
+      return (
+        <ScrollView
+          style={{paddingHorizontal: 10}}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}>
+          {stateListDate}
+        </ScrollView>
+      );
+    }
+  };
+
+  cityList = () => {
+    const {city} = this.props.auth;
+    if (city) {
+      let cityListDate = city.map((value, key) => {
+        return (
+          <TouchableOpacity
+          // onPress={() => this.openCityModal(value.STATE_ID)}
+          >
+            <View style={{height: 30, marginBottom: 5}}>
+              <Text category="h6" style={{}}>
+                {value.CITY_NAME}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        );
+      });
+      return (
+        <ScrollView
+          style={{paddingHorizontal: 10}}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}>
+          {cityListDate}
+        </ScrollView>
+      );
+    }
+  };
+
+  closeCityModal = () => {
+    this.setState({cityModalVisible: false});
   };
 
   render() {
@@ -79,7 +163,7 @@ class Header extends React.Component {
                 textDecorationLine: 'underline',
               }}>
               Location{' '}
-              <Ionicons name="location-outline" size={20} color="#ffffff" />
+              <Ionicons name="location-outline" size={15} color="#ffffff" />
             </Text>
           }
           accessoryLeft={this.RenderHeaderTitle}
@@ -108,34 +192,31 @@ class Header extends React.Component {
                   <Text>Select State</Text>
                 </View>
               </View>
+              {this.stateList()}
+            </View>
+          </Modal>
 
-              <View style={styles.modalView}>
-                <View style={{flexDirection: 'row', marginTop: 50}}>
-                  <Text style={styles.lightColor}>
-                    Allow my cab to enter in next (in hour)
-                  </Text>
-                </View>
-
-                <View style={{flexDirection: 'row', marginVertical: 5}}>
-                  <Text style={styles.lightColor}>
-                    Add last 4-digits of vehicle no
-                  </Text>
-                </View>
-                <View style={{marginBottom: 5}}>
-                  <Button
-                    style={{
-                      backgroundColor: '#e32f45',
-                      borderWidth: 0,
-                      marginTop: 10,
-                    }}
-                    onPress={() => {
-                      this.sumbitFutureEntry('CAB');
-                    }}
-                    status="danger">
-                    BUTTON
-                  </Button>
+          <Modal
+            useNativeDriver={true}
+            animationType="slide"
+            transparent={true}
+            visible={this.state.cityModalVisible}>
+            <View style={styles.centeredView}>
+              <View style={{flexDirection: 'row'}}>
+                <Button
+                  style={{alignSelf: 'center', color: '#fff'}}
+                  appearance="ghost"
+                  size="medium"
+                  onPress={() => {
+                    this.closeCityModal();
+                  }}>
+                  X
+                </Button>
+                <View style={styles.centerIcon}>
+                  <Text>Select City</Text>
                 </View>
               </View>
+              {this.cityList()}
             </View>
           </Modal>
         </Animatable.View>
@@ -144,7 +225,14 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+const mapStateToProps = state => {
+  return {...state};
+};
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({getState, getCity}, dispatch);
+
+const HeaderWrapper = connect(mapStateToProps, mapDispatchToProps)(Header);
 
 const styles = StyleSheet.create({
   centeredView: {
@@ -174,6 +262,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: width * 0.39,
     top: 13,
-    elevation: (Platform.OS === 'android') ? 50 : 0
-}
+    elevation: Platform.OS === 'android' ? 50 : 0,
+  },
 });

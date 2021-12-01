@@ -12,6 +12,7 @@ import {useIsFocused} from '@react-navigation/native';
 import {Table, Row, Rows} from 'react-native-table-component';
 import {TopNavigation, Text, Divider} from '@ui-kitten/components';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Header from "../TopHeader"
 
 export default Booking = props => {
   const isFocused = useIsFocused();
@@ -25,45 +26,11 @@ class Booking extends React.Component {
   }
 
   componentDidMount() {}
-  RenderHeaderTitle = () => {
-    return (
-      <TouchableOpacity
-        style={{width: 25, alignItems: 'center'}}
-        onPress={() => this.props.navigation.navigate('Home')}>
-        <View style={{flexDirection: 'row'}}>
-          <FontAwesome5 name="chevron-left" size={20} color="#ffffff" />
-        </View>
-      </TouchableOpacity>
-    );
-  };
-
-  RenderRightTitle = () => {
-    return (
-      <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
-          <FontAwesome5 name="align-left" size={20} color="#ffffff" />
-        </TouchableOpacity>
-      </View>
-    );
-  };
 
   render() {
     return (
       <View style={styles.container}>
-        <View>
-          <TopNavigation
-            alignment="center"
-            title={
-              <Text
-                style={{color: '#ffffff', fontSize: 16, fontWeight: 'bold'}}>
-                About Us
-              </Text>
-            }
-            accessoryLeft={this.RenderHeaderTitle}
-            accessoryRight={this.RenderRightTitle}
-            style={{backgroundColor: '#05357a', paddingHorizontal: 20}}
-          />
-        </View>
+        <Header props={this.props} />
         <ScrollView
           style={{paddingHorizontal: 10}}
           showsVerticalScrollIndicator={false}
@@ -71,7 +38,7 @@ class Booking extends React.Component {
           <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 5}}>
             <View style={{flex: 1, alignItems: 'center'}}>
               <Text style={{...styles.ctext, fontSize: 24, fontWeight: 'bold'}}>
-                Welcome to Koha Talent Hunt
+                Welcome to Koha Talent Hunt Booking
               </Text>
             </View>
           </View>

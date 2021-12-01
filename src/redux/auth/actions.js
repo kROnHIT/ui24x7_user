@@ -9,6 +9,12 @@ import {
   REGISTER_USER,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_ERROR,
+  GET_STATE,
+  GET_STATE_SUCCESS,
+  GET_STATE_ERROR,
+  GET_CITY,
+  GET_CITY_SUCCESS,
+  GET_CITY_ERROR,
 } from '../actions';
 
 export const checkUser = (data) => ({
@@ -50,5 +56,29 @@ export const registerUserSuccess = (items) => ({
 });
 export const registerUserError = (message) => ({
   type: REGISTER_USER_ERROR,
+  payload: message
+});
+export const getState = (data) => ({
+  type: GET_STATE,
+  payload: data
+});
+export const getStateSuccess = (items) => ({
+  type: GET_STATE_SUCCESS,
+  payload: items
+});
+export const getStateError = (message) => ({
+  type: GET_STATE_ERROR,
+  payload: message
+});
+export const getCity = (data) => ({
+  type: GET_CITY,
+  payload: data
+});
+export const getCitySuccess = (items) => ({
+  type: GET_CITY_SUCCESS,
+  payload: items
+});
+export const getCityError = (message) => ({
+  type: GET_CITY_ERROR,
   payload: message
 });
