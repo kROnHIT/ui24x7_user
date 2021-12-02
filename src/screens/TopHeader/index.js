@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
-  Image
+  Image,
 } from 'react-native';
 import {
   Button,
@@ -17,7 +17,7 @@ import {
   Text,
 } from '@ui-kitten/components';
 import * as Animatable from 'react-native-animatable';
-import {getState, getCity} from '../../redux/actions';
+import {getState, getCity, setCity} from '../../redux/actions';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-community/async-storage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -54,9 +54,9 @@ class Header extends React.Component {
     return (
       <TouchableOpacity
         style={{width: 25, alignItems: 'center'}}
-        onPress={() => this.props.navigation.navigate('Home')}>
+        onPress={() => this.props.props.navigation.openDrawer()}>
         <View style={{flexDirection: 'row'}}>
-          <FontAwesome5 name="chevron-left" size={20} color="#ffffff" />
+          <FontAwesome5 name="align-left" size={20} color="#ffffff" />
         </View>
       </TouchableOpacity>
     );
@@ -66,7 +66,8 @@ class Header extends React.Component {
     console.log('nav', this.props);
     return (
       <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity onPress={() => this.props.props.navigation.navigate('Profile')}>
+        <TouchableOpacity
+          onPress={() => this.props.props.navigation.navigate('Profile')}>
           <Image
             source={require('../../../asset/icons/man.png')}
             resizeMode="contain"
@@ -117,14 +118,16 @@ class Header extends React.Component {
     }
   };
 
+  setLocation = async value => {
+    await this.props.setCity(value);
+    this.setState({cityModalVisible: false});
+  };
   cityList = () => {
     const {city} = this.props.auth;
     if (city) {
       let cityListDate = city.map((value, key) => {
         return (
-          <TouchableOpacity
-          // onPress={() => this.openCityModal(value.STATE_ID)}
-          >
+          <TouchableOpacity onPress={() => this.setLocation(value)}>
             <View style={{height: 30, marginBottom: 5}}>
               <Text category="h6" style={{}}>
                 {value.CITY_NAME}
@@ -149,6 +152,8 @@ class Header extends React.Component {
   };
 
   render() {
+    const {setCity} = this.props.auth;
+    console.log('setCity', setCity.length);
     return (
       <View>
         <TopNavigation
@@ -162,7 +167,9 @@ class Header extends React.Component {
                 fontWeight: 'bold',
                 textDecorationLine: 'underline',
               }}>
-              Location{' '}
+              {setCity && setCity.length !== 0
+                ? setCity.CITY_NAME
+                : 'Select Location'}
               <Ionicons name="location-outline" size={15} color="#ffffff" />
             </Text>
           }
@@ -230,7 +237,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({getState, getCity}, dispatch);
+  bindActionCreators({getState, getCity, setCity}, dispatch);
 
 const HeaderWrapper = connect(mapStateToProps, mapDispatchToProps)(Header);
 

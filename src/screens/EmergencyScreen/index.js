@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useIsFocused } from '@react-navigation/native';
 import { connect } from 'react-redux';
@@ -103,30 +104,30 @@ class Home extends React.Component {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{ ...styles.card, backgroundColor: '#fffaf0' }}
+              style={{ ...styles.card, backgroundColor: '#f0fff4' }}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
-                <MaterialCommunityIcons
-                  name="fire-truck"
+                <Ionicons
+                  name="business"
                   size={35}
-                  color="#dd6b20"
+                  color="#38a169"
                 />
               </View>
-              <Text style={{ ...styles.cardTxt, color: '#dd6b20' }}>
+              <Text style={{ ...styles.cardTxt, color: '#38a169' }}>
                 Police Station
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{ ...styles.card, backgroundColor: '#fffaf0' }}
+              style={{ ...styles.card, backgroundColor: '#fff5f7' }}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons
-                  name="fire-truck"
+                  name="blood-bag"
                   size={35}
-                  color="#dd6b20"
+                  color="#d53f8c"
                 />
               </View>
-              <Text style={{ ...styles.cardTxt, color: '#dd6b20' }}>
+              <Text style={{ ...styles.cardTxt, color: '#d53f8c' }}>
                 Blood Banks
               </Text>
             </TouchableOpacity>
@@ -134,30 +135,30 @@ class Home extends React.Component {
 
           <View style={{ flexDirection: 'row', marginTop: 7 }}>
             <TouchableOpacity
-              style={{ ...styles.card, backgroundColor: '#fffaf0' }}
+              style={{ ...styles.card, backgroundColor: '#ebf8ff' }}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons
-                  name="fire-truck"
+                  name="tow-truck"
                   size={35}
-                  color="#dd6b20"
+                  color="#3182ce"
                 />
               </View>
-              <Text style={{ ...styles.cardTxt, color: '#dd6b20' }}>
+              <Text style={{ ...styles.cardTxt, color: '#3182ce' }}>
                 Towing
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{ ...styles.card, backgroundColor: '#fffaf0' }}
+              style={{ ...styles.card, backgroundColor: '#fffff0' }}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
-                <MaterialCommunityIcons
-                  name="fire-truck"
+                <FontAwesome5
+                  name="clinic-medical"
                   size={35}
-                  color="#dd6b20"
+                  color="#d69e2e"
                 />
               </View>
-              <Text style={{ ...styles.cardTxt, color: '#dd6b20' }}>
+              <Text style={{ ...styles.cardTxt, color: '#d69e2e' }}>
                 Medical Store
               </Text>
             </TouchableOpacity>

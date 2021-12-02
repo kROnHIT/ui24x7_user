@@ -6,11 +6,8 @@ import {
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Swiper from 'react-native-swiper';
 import {useIsFocused} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -19,6 +16,7 @@ import Emergency from './emergency';
 import Booking from './booking';
 import Travel from './travel';
 import Services from './services';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 export default Home = props => {
   const isFocused = useIsFocused();
@@ -35,6 +33,18 @@ class Home extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <Header props={this.props} />
+        <View style={styles.searchCard}>
+          <View style={styles.action}>
+            <FontAwesome name="search" size={20} color={'#5a67d8'} />
+            <TextInput
+              value={this.state.mobileNumber}
+              placeholder="Enter Keyword to Search"
+              placeholderTextColor="#AFAFAF"
+              style={styles.text_input}
+              onChangeText={value => this.setState({mobileNumber: value})}
+            />
+          </View>
+        </View>
         <Emergency props={this.props} />
         <Booking props={this.props} />
         <Travel props={this.props} />
@@ -56,31 +66,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  cardsWrapper: {
-    marginTop: 20,
-    width: '90%',
-    alignSelf: 'center',
-    backgroundColor: '#fff',
-    elevation: 2,
-    padding: 5,
+  searchCard: {
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingTop: 10,
+    paddingHorizontal: 20,
   },
-  card: {
-    flex: 1,
-    width: 80,
-    height: 73,
-    marginHorizontal: 4,
-    borderRadius: 5,
-    // alignSelf: 'center',
-  },
-  cardIcon: {
+  action: {
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: '#D3D1D1',
+    backgroundColor:'#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    marginTop: 10,
+    borderRadius: 10,
+    paddingHorizontal: 10,
   },
-  cardTxt: {
-    alignSelf: 'center',
-    // color: '#e32f45',
-    fontSize: 12,
+  text_input: {
+    flex: 1,
+    paddingLeft: 10,
+    color: '#5a67d8',
+    fontSize: 17,
   },
 });

@@ -244,22 +244,6 @@ const TabsScreen = () => {
 const RootStack = createStackNavigator();
 
 const RootStackScreen = () => {
-  // let user = null;
-  // const [data, setData] = useState();
-  // useEffect(() => {
-  //     const retrieveData = async () => {
-  //         try {
-  //             const valueString = await AsyncStorage.getItem('user');
-  //             const value = JSON.parse(valueString);
-  //             // Other set states
-  //             setData(value);
-  //         } catch (error) {
-  //             setData(null)
-  //         }
-  //     };
-  //     retrieveData();
-  // }, [setData]);
-  // user = data
   return (
     <RootStack.Navigator headerMode="none" initialRouteName="Splash">
       <RootStack.Screen

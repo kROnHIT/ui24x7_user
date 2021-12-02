@@ -1,120 +1,159 @@
 import React from 'react';
 import {
-  StyleSheet,
+  Text,
   View,
-  Image,
-  ScrollView,
+  Button,
+  SafeAreaView,
+  StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import Fontisto from 'react-native-vector-icons/Fontisto';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Octicons from 'react-native-vector-icons/Octicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {useIsFocused} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {useIsFocused} from '@react-navigation/native';
-import {Table, Row, Rows} from 'react-native-table-component';
-import {TopNavigation, Text, Divider} from '@ui-kitten/components';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Header from '../TopHeader';
 
-export default Services = props => {
+export default Home = props => {
   const isFocused = useIsFocused();
-  return isFocused ? <ServicesWrapper {...props} /> : null;
+  return isFocused ? <HomeWrapper {...props} /> : null;
 };
 
-class Services extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
-  componentDidMount() {}
-  RenderHeaderTitle = () => {
-    return (
-      <TouchableOpacity
-        style={{width: 25, alignItems: 'center'}}
-        onPress={() => this.props.navigation.navigate('Home')}>
-        <View style={{flexDirection: 'row'}}>
-          <FontAwesome5 name="chevron-left" size={20} color="#ffffff" />
-        </View>
-      </TouchableOpacity>
-    );
-  };
-
-  RenderRightTitle = () => {
-    return (
-      <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
-          <FontAwesome5 name="align-left" size={20} color="#ffffff" />
-        </TouchableOpacity>
-      </View>
-    );
-  };
-
   render() {
+    console.log('this.props', this.props);
     return (
-      <View style={styles.container}>
-        <View>
-          <TopNavigation
-            alignment="center"
-            title={
-              <Text
-                style={{color: '#ffffff', fontSize: 16, fontWeight: 'bold'}}>
-                About Us
-              </Text>
-            }
-            accessoryLeft={this.RenderHeaderTitle}
-            accessoryRight={this.RenderRightTitle}
-            style={{backgroundColor: '#05357a', paddingHorizontal: 20}}
-          />
-        </View>
-        <ScrollView
-          style={{paddingHorizontal: 10}}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}>
-          <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 5}}>
-            <View style={{flex: 1, alignItems: 'center'}}>
-              <Text style={{...styles.ctext, fontSize: 24, fontWeight: 'bold'}}>
-                Welcome to Koha Talent Hunt
-              </Text>
-            </View>
+      <SafeAreaView style={styles.container}>
+        <Header props={this.props} />
+        <View style={styles.cardsWrapper}>
+          <View style={{flexDirection: 'row'}}>
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: 'bold',
+                color: '#333',
+                marginBottom: 5,
+                flex: 1,
+                marginLeft: 5,
+              }}>
+              Booking
+            </Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <View style={{flex: 1.4, paddingRight: 10}}>
-              <Text
-                style={{
-                  ...styles.ctext,
-                  fontWeight: 'bold',
-                  marginBottom: 10,
-                  textAlign: 'justify',
-                }}>
-                The objective of the scheme is to award scholarships to
-                meritorious students belonging to economically weaker families
-                so as to provide them better opportunities for higher education
-                and thus enhance their employability.
+            <TouchableOpacity
+              style={{...styles.card, backgroundColor: '#fff5f7'}}
+              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              <View style={styles.cardIcon}>
+                <FontAwesome name="book" size={35} color="#d53f8c" />
+              </View>
+              <Text style={{...styles.cardTxt, color: '#d53f8c'}}>
+                Education
               </Text>
-              <Text style={{...styles.ctext, textAlign: 'justify'}}>
-                The scholarship is to be awarded for studies in India in a
-                government or private college/university. It will also cover
-                technical and vocational courses in Industrial Training
-                Institutes/ Industrial Training Centre.
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{...styles.card, backgroundColor: '#faf5ff'}}
+              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              <View style={styles.cardIcon}>
+                <Fontisto
+                  name="user-secret"
+                  size={35}
+                  color="#805ad5"
+                />
+              </View>
+              <Text style={{...styles.cardTxt, color: '#805ad5'}}>
+                Consultants
               </Text>
-            </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{...styles.card, backgroundColor: '#fffff0'}}
+              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              <View style={styles.cardIcon}>
+                <MaterialCommunityIcons
+                  name="account-search"
+                  size={35}
+                  color="#d69e2e"
+                />
+              </View>
+              <Text style={{...styles.cardTxt, color: '#d69e2e'}}>
+                Rent & Hire
+              </Text>
+            </TouchableOpacity>
           </View>
-        </ScrollView>
-      </View>
+
+          <View style={{flexDirection: 'row', marginTop: 7}}>
+            <TouchableOpacity
+              style={{...styles.card, backgroundColor: '#fffaf0'}}
+              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              <View style={styles.cardIcon}>
+                <Ionicons name="construct" size={35} color="#dd6b20" />
+              </View>
+              <Text style={{...styles.cardTxt, color: '#dd6b20'}}>
+                Home Services
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{...styles.card, backgroundColor: '#f0fff4'}}
+              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              <View style={styles.cardIcon}>
+                <MaterialCommunityIcons name="sign-real-estate" size={35} color="#38a169" />
+              </View>
+              <Text style={{...styles.cardTxt, color: '#38a169'}}>
+                Real Estate
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </SafeAreaView>
     );
   }
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'rgba(255, 214, 204, 0.30)',
-  },
-  ctext: {
-    color: '#3C3C3C',
-  },
-});
+
 const mapStateToProps = state => {
   return {...state};
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
-const ServicesWrapper = connect(mapStateToProps, mapDispatchToProps)(Services);
+const HomeWrapper = connect(mapStateToProps, mapDispatchToProps)(Home);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  cardsWrapper: {
+    marginTop: 20,
+    width: '90%',
+    alignSelf: 'center',
+    backgroundColor: '#fff',
+    elevation: 2,
+    padding: 5,
+  },
+  card: {
+    flex: 1,
+    width: 80,
+    height: 73,
+    marginHorizontal: 4,
+    borderRadius: 5,
+    // alignSelf: 'center',
+  },
+  cardIcon: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: 10,
+  },
+  cardTxt: {
+    alignSelf: 'center',
+    // color: '#e32f45',
+    fontSize: 12,
+  },
+});

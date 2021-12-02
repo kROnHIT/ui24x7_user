@@ -15,6 +15,7 @@ import {
   GET_CITY,
   GET_CITY_SUCCESS,
   GET_CITY_ERROR,
+  SET_CITY,
 } from '../actions';
 
 export const checkUser = (data) => ({
@@ -81,4 +82,8 @@ export const getCitySuccess = (items) => ({
 export const getCityError = (message) => ({
   type: GET_CITY_ERROR,
   payload: message
+});
+export const setCity = (data) => ({
+  type: SET_CITY,
+  payload: data
 });

@@ -58,44 +58,44 @@ class Home extends React.Component {
           </View>
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#faf5ff'}}
+              style={{...styles.card}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
-                <FontAwesome name="book" size={35} color="#6b46c1" />
+                <FontAwesome name="book" size={30} color="#6b46c1" />
               </View>
-              <Text style={{...styles.cardTxt, color: '#6b46c1'}}>
+              <Text style={{...styles.cardTxt, color: '#6b46c1', marginTop:5}}>
                 Education
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#fff5f5'}}
+              style={{...styles.card}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
-                <Fontisto name="user-secret" size={35} color="#c53030" />
+                <Fontisto name="user-secret" size={30} color="#c53030" />
               </View>
-              <Text style={{...styles.cardTxt, color: '#c53030'}}>
+              <Text style={{...styles.cardTxt, color: '#c53030', marginTop:5}}>
                 Consultants
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#e6fffa'}}
+              style={{...styles.card}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons
                   name="account-search"
-                  size={35}
+                  size={30}
                   color="#319795"
                 />
               </View>
-              <Text style={{...styles.cardTxt, color: '#319795'}}>
+              <Text style={{...styles.cardTxt, color: '#319795', marginTop:5}}>
                 Rent & Hire
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#fffff0'}}
+              style={{...styles.card}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
-                <Ionicons name="construct" size={35} color="#dd6b20" />
+                <Ionicons name="construct" size={30} color="#dd6b20" />
               </View>
               <Text style={{...styles.cardTxt, color: '#dd6b20'}}>
                 Home Services
@@ -127,24 +127,28 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     elevation: 2,
     padding: 5,
+    paddingBottom:8
   },
   card: {
     flex: 1,
-    width: 80,
-    height: 73,
+    height: 85,
     marginHorizontal: 4,
-    borderRadius: 5,
-    // alignSelf: 'center',
+    borderRadius: 100
   },
   cardIcon: {
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
-    marginTop: 10,
+    marginTop: 14,
   },
   cardTxt: {
+    width:70,
     alignSelf: 'center',
     // color: '#e32f45',
     fontSize: 12,
+    alignContent:'center',
+    alignItems:'center',
+    justifyContent:'center',
+    textAlign:'center'
   },
 });

@@ -58,54 +58,52 @@ class Home extends React.Component {
           </View>
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#faf5ff'}}
+              style={{...styles.card}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
-                <Octicons
-                  name="device-mobile"
-                  size={35}
-                  color="#bf00ff"
-                />
+                <Octicons name="device-mobile" size={30} color="#bf00ff" />
               </View>
-              <Text style={{...styles.cardTxt, color: '#bf00ff'}}>Mobile</Text>
+              <Text style={{...styles.cardTxt, color: '#bf00ff', marginTop: 5}}>
+                Mobile
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#ebf8ff'}}
+              style={{...styles.card}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons
                   name="gas-cylinder"
-                  size={35}
+                  size={30}
                   color="#00ace6"
                 />
               </View>
-              <Text style={{...styles.cardTxt, color: '#00ace6'}}>Gas</Text>
+              <Text style={{...styles.cardTxt, color: '#00ace6', marginTop: 5}}>
+                Gas
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#fffff0'}}
+              style={{...styles.card}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
                 <MaterialIcons
                   name="electrical-services"
-                  size={35}
+                  size={30}
                   color="#dd6b20"
                 />
               </View>
-              <Text style={{...styles.cardTxt, color: '#dd6b20'}}>
+              <Text style={{...styles.cardTxt, color: '#dd6b20', marginTop: 5}}>
                 Electricity
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#ebf4ff'}}
+              style={{...styles.card}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
-                <FontAwesome5
-                  name="satellite-dish"
-                  size={35}
-                  color="#5a67d8"
-                />
+                <FontAwesome5 name="satellite-dish" size={30} color="#5a67d8" />
               </View>
-              <Text style={{...styles.cardTxt, color: '#5a67d8'}}>DTH</Text>
+              <Text style={{...styles.cardTxt, color: '#5a67d8', marginTop: 5}}>
+                DTH
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -133,24 +131,28 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     elevation: 2,
     padding: 5,
+    paddingBottom:8
   },
   card: {
     flex: 1,
-    width: 80,
-    height: 73,
+    height: 85,
     marginHorizontal: 4,
-    borderRadius: 5,
-    // alignSelf: 'center',
+    borderRadius: 100,
   },
   cardIcon: {
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
-    marginTop: 10,
+    marginTop: 14,
   },
   cardTxt: {
+    width: 70,
     alignSelf: 'center',
     // color: '#e32f45',
     fontSize: 12,
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
   },
 });

@@ -15,7 +15,7 @@ export const GET_STATE_ERROR = "GET_STATE_ERROR";
 export const GET_CITY = "GET_CITY";
 export const GET_CITY_SUCCESS = "GET_CITY_SUCCESS";
 export const GET_CITY_ERROR = "GET_CITY_ERROR";
-
+export const SET_CITY = "SET_CITY";
 // Security
 export const ADD_SECURITY = "ADD_SECURITY";
 export const ADD_SECURITY_SUCCESS = "ADD_SECURITY_SUCCESS";

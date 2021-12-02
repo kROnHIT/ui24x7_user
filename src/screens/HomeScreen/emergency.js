@@ -40,7 +40,8 @@ class Home extends React.Component {
               }}>
               Emergency
             </Text>
-            <TouchableOpacity onPress={() => this.props.props.navigation.navigate('Emergency')}>
+            <TouchableOpacity
+              onPress={() => this.props.props.navigation.navigate('Emergency')}>
               <Text
                 style={{
                   fontSize: 15,
@@ -56,56 +57,46 @@ class Home extends React.Component {
           </View>
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#fff5f7'}}
+              style={{...styles.card}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
-                <Fontisto
-                  name="doctor"
-                  size={35}
-                  color="#d53f8c"
-                />
+                <Fontisto name="doctor" size={30} color="#d53f8c" />
               </View>
-              <Text style={{...styles.cardTxt, color: '#d53f8c'}}>Doctor</Text>
+              <Text style={{...styles.cardTxt, color: '#d53f8c', marginTop: 5}}>
+                Doctor
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#faf5ff'}}
+              style={{...styles.card}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
-                <FontAwesome5
-                  name="hospital"
-                  size={35}
-                  color="#805ad5"
-                />
+                <FontAwesome5 name="hospital" size={30} color="#805ad5" />
               </View>
-              <Text style={{...styles.cardTxt, color: '#805ad5'}}>
+              <Text style={{...styles.cardTxt, color: '#805ad5', marginTop: 5}}>
                 Hospital
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#ebf4ff'}}
+              style={{...styles.card}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
-                <FontAwesome5
-                  name="ambulance"
-                  size={35}
-                  color="#5a67d8"
-                />
+                <FontAwesome5 name="ambulance" size={30} color="#5a67d8" />
               </View>
-              <Text style={{...styles.cardTxt, color: '#5a67d8'}}>
+              <Text style={{...styles.cardTxt, color: '#5a67d8', marginTop: 5}}>
                 Ambulance
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#fffaf0'}}
+              style={{...styles.card}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons
                   name="fire-truck"
-                  size={35}
+                  size={30}
                   color="#dd6b20"
                 />
               </View>
-              <Text style={{...styles.cardTxt, color: '#dd6b20'}}>
+              <Text style={{...styles.cardTxt, color: '#dd6b20', marginTop: 5}}>
                 Fire Brigade
               </Text>
             </TouchableOpacity>
@@ -135,24 +126,28 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     elevation: 2,
     padding: 5,
+    paddingBottom:8
   },
   card: {
     flex: 1,
-    width: 80,
-    height: 73,
+    height: 85,
     marginHorizontal: 4,
-    borderRadius: 5,
-    // alignSelf: 'center',
+    borderRadius: 100,
   },
   cardIcon: {
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
-    marginTop: 10,
+    marginTop: 14,
   },
   cardTxt: {
+    width: 70,
     alignSelf: 'center',
     // color: '#e32f45',
     fontSize: 12,
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
   },
 });

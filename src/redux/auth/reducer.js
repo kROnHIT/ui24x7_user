@@ -15,6 +15,7 @@ import {
   GET_CITY,
   GET_CITY_SUCCESS,
   GET_CITY_ERROR,
+  SET_CITY,
 } from '../actions';
 
 const INIT_STATE = {
@@ -26,6 +27,7 @@ const INIT_STATE = {
   userExit: null,
   state: [],
   city: [],
+  setCity: [],
 };
 
 export default (state = INIT_STATE, action) => {
@@ -62,6 +64,9 @@ export default (state = INIT_STATE, action) => {
       return {...state, loading: false, ...action.payload};
     case GET_CITY_ERROR:
       return {...state, loading: false, ...action.payload};
+    case SET_CITY:
+      console.log('assdsdsadasdsadsa', action);
+      return {...state, loading: true, setCity: action.payload};
     default:
       return {...state};
   }
