@@ -6,9 +6,6 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Octicons from 'react-native-vector-icons/Octicons';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -61,36 +58,36 @@ class Home extends React.Component {
           </View>
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#fff5f7'}}
+              style={{...styles.card, backgroundColor: '#faf5ff'}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
-                <FontAwesome name="book" size={35} color="#d53f8c" />
+                <FontAwesome name="book" size={35} color="#6b46c1" />
               </View>
-              <Text style={{...styles.cardTxt, color: '#d53f8c'}}>
+              <Text style={{...styles.cardTxt, color: '#6b46c1'}}>
                 Education
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#faf5ff'}}
+              style={{...styles.card, backgroundColor: '#fff5f5'}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
-                <Fontisto name="user-secret" size={35} color="#805ad5" />
+                <Fontisto name="user-secret" size={35} color="#c53030" />
               </View>
-              <Text style={{...styles.cardTxt, color: '#805ad5'}}>
+              <Text style={{...styles.cardTxt, color: '#c53030'}}>
                 Consultants
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#ebf4ff'}}
+              style={{...styles.card, backgroundColor: '#e6fffa'}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons
                   name="account-search"
                   size={35}
-                  color="#5a67d8"
+                  color="#319795"
                 />
               </View>
-              <Text style={{...styles.cardTxt, color: '#5a67d8'}}>
+              <Text style={{...styles.cardTxt, color: '#319795'}}>
                 Rent & Hire
               </Text>
             </TouchableOpacity>

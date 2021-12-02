@@ -58,7 +58,7 @@ class Home extends React.Component {
           </View>
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#f9e6ff'}}
+              style={{...styles.card, backgroundColor: '#faf5ff'}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
                 <Octicons
@@ -70,7 +70,7 @@ class Home extends React.Component {
               <Text style={{...styles.cardTxt, color: '#bf00ff'}}>Mobile</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#e6f9ff'}}
+              style={{...styles.card, backgroundColor: '#ebf8ff'}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons
@@ -82,30 +82,30 @@ class Home extends React.Component {
               <Text style={{...styles.cardTxt, color: '#00ace6'}}>Gas</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#ebf4ff'}}
+              style={{...styles.card, backgroundColor: '#fffff0'}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
                 <MaterialIcons
                   name="electrical-services"
                   size={35}
-                  color="#5a67d8"
+                  color="#dd6b20"
                 />
               </View>
-              <Text style={{...styles.cardTxt, color: '#5a67d8'}}>
+              <Text style={{...styles.cardTxt, color: '#dd6b20'}}>
                 Electricity
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#fffff0'}}
+              style={{...styles.card, backgroundColor: '#ebf4ff'}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
                 <FontAwesome5
                   name="satellite-dish"
                   size={35}
-                  color="#dd6b20"
+                  color="#5a67d8"
                 />
               </View>
-              <Text style={{...styles.cardTxt, color: '#dd6b20'}}>DTH</Text>
+              <Text style={{...styles.cardTxt, color: '#5a67d8'}}>DTH</Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -66,12 +66,12 @@ class Home extends React.Component {
               <Text style={{...styles.cardTxt, color: '#38a169'}}>Flight</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#fff5f5'}}
+              style={{...styles.card, backgroundColor: '#f7fafc'}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
-                <FontAwesome5 name="bus-alt" size={35} color="#e53e3e" />
+                <FontAwesome5 name="bus-alt" size={35} color="#718096" />
               </View>
-              <Text style={{...styles.cardTxt, color: '#e53e3e'}}>Bus</Text>
+              <Text style={{...styles.cardTxt, color: '#718096'}}>Bus</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{...styles.card, backgroundColor: '#faf5ff'}}
@@ -82,12 +82,12 @@ class Home extends React.Component {
               <Text style={{...styles.cardTxt, color: '#805ad5'}}>Trains</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card, backgroundColor: '#f7fafc'}}
+              style={{...styles.card, backgroundColor: '#fff5f5'}}
               onPress={() => this.props.navigation.navigate('SecurityAlert')}>
               <View style={styles.cardIcon}>
-                <FontAwesome5 name="car-side" size={35} color="#718096" />
+                <FontAwesome5 name="car-side" size={35} color="#e53e3e" />
               </View>
-              <Text style={{...styles.cardTxt, color: '#718096'}}>
+              <Text style={{...styles.cardTxt, color: '#e53e3e'}}>
                 Car Rentals
               </Text>
             </TouchableOpacity>
