@@ -81,7 +81,7 @@ class Drawer extends React.Component {
           <View style={styles.item}>
             <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate('AdmitCard');
+                this.props.navigation.navigate('Emergency');
               }}
               style={{flex: 1, flexDirection: 'row'}}>
               <MaterialCommunityIcons
@@ -89,17 +89,47 @@ class Drawer extends React.Component {
                 size={17}
                 color="#05357a"
               />
-              <Text style={styles.title}>Admit Card</Text>
+              <Text style={styles.title}>Emergency</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.item}>
             <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate('Exam');
+                this.props.navigation.navigate('Booking');
               }}
               style={{flex: 1, flexDirection: 'row'}}>
               <Ionicons name="book" size={18} color={'#05357a'} />
-              <Text style={styles.title}>Exam</Text>
+              <Text style={styles.title}>Booking</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.item}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('Travel');
+              }}
+              style={{flex: 1, flexDirection: 'row'}}>
+              <Ionicons name="book" size={18} color={'#05357a'} />
+              <Text style={styles.title}>Travel</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.item}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('Services');
+              }}
+              style={{flex: 1, flexDirection: 'row'}}>
+              <Ionicons name="book" size={18} color={'#05357a'} />
+              <Text style={styles.title}>Services</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.item}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('Enquiry');
+              }}
+              style={{flex: 1, flexDirection: 'row'}}>
+              <Ionicons name="book" size={18} color={'#05357a'} />
+              <Text style={styles.title}>Enquiry</Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -12,7 +12,7 @@ import Services from '../screens/ServicesScreen';
 import Profile from '../screens/ProfileScreen';
 import Login from '../screens/LoginScreen';
 import Register from '../screens/RegisterScreen';
-import Classified from '../screens/ClassifiedScreen';
+import Enquiry from '../screens/EnquiryScreen';
 import Splash from '../screens/SplashScreen';
 import TopHeader from '../screens/TopHeader';
 
@@ -22,7 +22,6 @@ const EmergencyStack = createStackNavigator();
 const BookingStack = createStackNavigator();
 const TravelStack = createStackNavigator();
 const ServicesStack = createStackNavigator();
-const ProfileStack = createStackNavigator();
 const LoginStack = createStackNavigator();
 
 const CustomTabButton = ({children, onPress}) => (
@@ -77,6 +76,7 @@ function HomeStackScreen() {
     <HomeStack.Navigator headerMode={false}>
       <HomeStack.Screen name="Home" component={Home} />
       <HomeStack.Screen name="Profile" component={Profile} />
+      <HomeStack.Screen name="Enquiry" component={Enquiry} />
     </HomeStack.Navigator>
   );
 }
