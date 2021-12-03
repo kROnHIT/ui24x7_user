@@ -16,6 +16,9 @@ import {
   GET_CITY_SUCCESS,
   GET_CITY_ERROR,
   SET_CITY,
+  ENQUIRY,
+  ENQUIRY_SUCCESS,
+  ENQUIRY_ERROR,
 } from '../actions';
 
 export const checkUser = (data) => ({
@@ -86,4 +89,16 @@ export const getCityError = (message) => ({
 export const setCity = (data) => ({
   type: SET_CITY,
   payload: data
+});
+export const enquiry = (data) => ({
+  type: ENQUIRY,
+  payload: data
+});
+export const enquirySuccess = (items) => ({
+  type: ENQUIRY_SUCCESS,
+  payload: items
+});
+export const enquiryError = (message) => ({
+  type: ENQUIRY_ERROR,
+  payload: message
 });

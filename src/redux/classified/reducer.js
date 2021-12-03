@@ -1,23 +1,23 @@
 import {
-  FETCH_NOTICE_ALL,
-  FETCH_NOTICE_ALL_SUCCESS,
-  FETCH_NOTICE_ALL_ERROR,
+  FETCH_EMERGENCY,
+  FETCH_EMERGENCY_SUCCESS,
+  FETCH_EMERGENCY_ERROR,
 } from '../actions';
 
 const INIT_STATE = {
   loading: false,
   error: '',
   message: '',
-  noticeListAll: [],
+  emergeencyData: [],
 };
 
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
-    case FETCH_NOTICE_ALL:
+    case FETCH_EMERGENCY:
       return { ...state, loading: true };
-    case FETCH_NOTICE_ALL_SUCCESS:
+    case FETCH_EMERGENCY_SUCCESS:
       return { ...state, loading: false, ...action.payload };
-    case FETCH_NOTICE_ALL_ERROR:
+    case FETCH_EMERGENCY_ERROR:
       return { ...state, loading: false, ...action.payload };
     default: return { ...state, };
   }

@@ -16,7 +16,6 @@ import {Divider} from '@ui-kitten/components';
 
 class Drawer extends React.Component {
   render() {
-    console.log('asdsadsa', this.props);
     const {user} = this.props.auth;
     return (
       <View style={{flex: 1}}>

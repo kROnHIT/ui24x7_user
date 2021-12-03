@@ -13,6 +13,7 @@ import Profile from '../screens/ProfileScreen';
 import Login from '../screens/LoginScreen';
 import Register from '../screens/RegisterScreen';
 import Enquiry from '../screens/EnquiryScreen';
+import Classified from '../screens/ClassifiedScreen';
 import Splash from '../screens/SplashScreen';
 import TopHeader from '../screens/TopHeader';
 
@@ -73,10 +74,11 @@ function BookingStackScreen() {
 
 function HomeStackScreen() {
   return (
-    <HomeStack.Navigator headerMode={false}>
+    <HomeStack.Navigator headerMode={false} initialRouteName="Home">
       <HomeStack.Screen name="Home" component={Home} />
       <HomeStack.Screen name="Profile" component={Profile} />
       <HomeStack.Screen name="Enquiry" component={Enquiry} />
+      <HomeStack.Screen name="Classified" component={Classified} />
     </HomeStack.Navigator>
   );
 }

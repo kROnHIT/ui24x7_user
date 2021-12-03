@@ -51,7 +51,6 @@ class Login extends React.Component {
 
     render() {
         const { auth } = this.props;
-        console.log('props', auth);
         {
             auth && auth.message && auth.message !== ''
                 ? this.showToast(auth.message, 1000)

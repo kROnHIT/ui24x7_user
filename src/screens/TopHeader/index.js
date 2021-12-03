@@ -63,7 +63,6 @@ class Header extends React.Component {
   };
 
   RenderRightTitle = () => {
-    console.log('nav', this.props);
     return (
       <View style={{flexDirection: 'row'}}>
         <TouchableOpacity
@@ -153,7 +152,6 @@ class Header extends React.Component {
 
   render() {
     const {setCity} = this.props.auth;
-    console.log('setCity', setCity.length);
     return (
       <View>
         <TopNavigation

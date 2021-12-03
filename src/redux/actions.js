@@ -16,62 +16,18 @@ export const GET_CITY = "GET_CITY";
 export const GET_CITY_SUCCESS = "GET_CITY_SUCCESS";
 export const GET_CITY_ERROR = "GET_CITY_ERROR";
 export const SET_CITY = "SET_CITY";
-// Security
-export const ADD_SECURITY = "ADD_SECURITY";
-export const ADD_SECURITY_SUCCESS = "ADD_SECURITY_SUCCESS";
-export const ADD_SECURITY_ERROR = "ADD_SECURITY_ERROR";
-
-// Profile
-export const ADD_FAMILY_MEMBER = "ADD_FAMILY_MEMBER";
-export const ADD_FAMILY_MEMBER_SUCCESS = "ADD_FAMILY_MEMBER_SUCCESS";
-export const ADD_FAMILY_MEMBER_ERROR = "ADD_FAMILY_MEMBER_ERROR";
-export const FETCH_FAMILY_MEMBER = "FETCH_FAMILY_MEMBER";
-export const FETCH_FAMILY_MEMBER_SUCCESS = "FETCH_FAMILY_MEMBER_SUCCESS";
-export const FETCH_FAMILY_MEMBER_ERROR = "FETCH_FAMILY_MEMBER_ERROR";
-
-export const ADD_VEHICLE = "ADD_VEHICLE";
-export const ADD_VEHICLE_SUCCESS = "ADD_VEHICLE_SUCCESS";
-export const ADD_VEHICLE_ERROR = "ADD_VEHICLE_ERROR";
-export const FETCH_VEHICLE = "FETCH_VEHICLE";
-export const FETCH_VEHICLE_SUCCESS = "FETCH_VEHICLE_SUCCESS";
-export const FETCH_VEHICLE_ERROR = "FETCH_VEHICLE_ERROR";
-
-export const ADD_DAILY_HELP = "ADD_DAILY_HELP";
-export const ADD_DAILY_HELP_SUCCESS = "ADD_DAILY_HELP_SUCCESS";
-export const ADD_DAILY_HELP_ERROR = "ADD_DAILY_HELP_ERROR";
-export const FETCH_DAILY_HELP = "FETCH_DAILY_HELP";
-export const FETCH_DAILY_HELP_SUCCESS = "FETCH_DAILY_HELP_SUCCESS";
-export const FETCH_DAILY_HELP_ERROR = "FETCH_DAILY_HELP_ERROR";
+export const ENQUIRY = "ENQUIRY";
+export const ENQUIRY_SUCCESS = "ENQUIRY_SUCCESS";
+export const ENQUIRY_ERROR = "ENQUIRY_ERROR";
 
 // Splash
 export const SET_USER_DATA = "SET_USER_DATA";
 export const SET_USER_DATA_SUCCESS = "SET_USER_DATA_SUCCESS";
 
-// Quick Action
-export const ADD_MESSAGE_TO_GUARD = "ADD_MESSAGE_TO_GUARD";
-export const ADD_MESSAGE_TO_GUARD_SUCCESS = "ADD_MESSAGE_TO_GUARD_SUCCESS";
-export const ADD_MESSAGE_TO_GUARD_ERROR = "ADD_MESSAGE_TO_GUARD_ERROR";
-export const ADD_FUTURE_ENTRY = "ADD_FUTURE_ENTRY";
-export const ADD_FUTURE_ENTRY_SUCCESS = "ADD_FUTURE_ENTRY_SUCCESS";
-export const ADD_FUTURE_ENTRY_ERROR = "ADD_FUTURE_ENTRY_ERROR";
-
-// Complain
-export const ADD_COMPLAIN = "ADD_COMPLAIN";
-export const ADD_COMPLAIN_SUCCESS = "ADD_COMPLAIN_SUCCESS";
-export const ADD_COMPLAIN_ERROR = "ADD_COMPLAIN_ERROR";
-export const FETCH_COMPLAIN = "FETCH_COMPLAIN";
-export const FETCH_COMPLAIN_SUCCESS = "FETCH_COMPLAIN_SUCCESS";
-export const FETCH_COMPLAIN_ERROR = "FETCH_COMPLAIN_ERROR";
-
-// Home
-export const FETCH_NOTICE_ALL = "FETCH_NOTICE_ALL";
-export const FETCH_NOTICE_ALL_SUCCESS = "FETCH_NOTICE_ALL_SUCCESS";
-export const FETCH_NOTICE_ALL_ERROR = "FETCH_NOTICE_ALL_ERROR";
-
+// Classified
+export const FETCH_EMERGENCY = "FETCH_EMERGENCY";
+export const FETCH_EMERGENCY_SUCCESS = "FETCH_EMERGENCY_SUCCESS";
+export const FETCH_EMERGENCY_ERROR = "FETCH_EMERGENCY_ERROR";
 
 export * from './auth/actions';
-export * from './security/actions';
-export * from './profile/actions';
-export * from './quickAction/actions';
-export * from './complain/actions';
-export * from './home/actions';
+export * from './classified/actions';

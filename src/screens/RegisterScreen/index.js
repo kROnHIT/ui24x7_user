@@ -9,101 +9,101 @@ import {
   Dimensions,
   TextInput,
 } from 'react-native';
-import {registerUser} from '../../redux/actions';
-import {Button} from '@ui-kitten/components';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import Toast, {DURATION} from 'react-native-easy-toast';
-import {useIsFocused} from '@react-navigation/native';
+import { registerUser } from '../../redux/actions';
+import { Button } from '@ui-kitten/components';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import Toast, { DURATION } from 'react-native-easy-toast';
+import { useIsFocused } from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import * as Animatable from 'react-native-animatable';
 
-export default LoginScreen = props => {
+export default Register = props => {
   const isFocused = useIsFocused();
-  return isFocused ? <LoginWrapper {...props} /> : null;
+  return isFocused ? <RegisterWrapper {...props} /> : null;
 };
 
-class Login extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      mobile: '',
-      email: '',
+      name: 'test',
+      mobile: '9999999998',
+      email: 'abc@g.com',
+      upi: 'adfefs',
+      sponsor: 'UI24X7',
       nameError: '',
       mobileError: '',
       emailError: '',
+      upiError: '',
+      sponsorError: '',
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   async showToast(message, length = 1000) {
     this.toast && this.toast.show(message, length);
   }
 
   sumbit = async () => {
-    const {name, mobile, email} = this.state;
+    const { name, mobile, email, upi, sponsor } = this.state;
     let noError = true;
 
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     if (reg.test(email) === false) {
       console.log('Email is Not Correct');
-      this.setState({email: email, emailError: true});
+      this.setState({ email: email, emailError: true });
       // noError = false;
       return false;
     }
-    
+
     if (!name) {
-      this.setState({nameError: true});
+      this.setState({ nameError: true });
       noError = false;
     } else {
-      this.setState({nameError: false});
+      this.setState({ nameError: false });
     }
     if (mobile.length !== 10) {
-      this.setState({mobileError: true});
+      this.setState({ mobileError: true });
       noError = false;
     } else {
-      this.setState({mobileError: false});
+      this.setState({ mobileError: false });
     }
     if (!email) {
-      this.setState({emailError: true});
+      this.setState({ emailError: true });
       noError = false;
     } else {
-      this.setState({emailError: false});
+      this.setState({ emailError: false });
+    }
+    if (!upi) {
+      this.setState({ upiError: true });
+      noError = false;
+    } else {
+      this.setState({ upiError: false });
+    }
+    if (!sponsor) {
+      this.setState({ sponsorError: true });
+      noError = false;
+    } else {
+      this.setState({ sponsorError: false });
     }
     if (noError) {
-      let data = `STUDENT_NAME=${name}&MOBILE_NUMBER=${mobile}&EMAIL_ID=${email}`;
+      let data = `MOBILE_NUMBER=${mobile}&EMAIL=${email}&LOGIN_NAME=${name}&UPI_ACCOUNT=${upi}&SPONSOR_USERNAME=${sponsor}`;
 
       this.props.registerUser({
         data: data,
-        mobile: mobile,
         callback: res => {
           if (res) {
             this.props.navigation.navigate('Splash');
           }
         },
       });
-    } else {
-      this.showToast('Pleease fill the form.', 1000);
-    }
-  };
-
-  validate = text => {
-    console.log(text);
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    if (reg.test(text) === false) {
-      console.log('Email is Not Correct');
-      this.setState({email: text});
-      return false;
-    } else {
-      this.setState({email: text});
-      console.log('Email is Correct');
     }
   };
 
   render() {
-    const {auth} = this.props;
+    const { auth } = this.props;
     {
       auth && auth.message && auth.message !== ''
         ? this.showToast(auth.message, 1000)
@@ -120,13 +120,13 @@ class Login extends React.Component {
           />
         </View>
         <Animatable.View animation="fadeInUpBig" style={styles.footer}>
-          <Text style={styles.text_footer}>Student Name</Text>
+          <Text style={styles.text_footer}>Login Name</Text>
           <View style={styles.action}>
             <FontAwesome name="user-o" size={18} color={'#05357a'} />
             <TextInput
               value={this.state.name}
               placeholderTextColor="#707070"
-              onChangeText={value => this.setState({name: value})}
+              onChangeText={value => this.setState({ name: value })}
               placeholder="Student Name..."
               style={styles.text_input}
             />
@@ -143,7 +143,7 @@ class Login extends React.Component {
               maxLength={10}
               value={this.state.mobile}
               placeholderTextColor="#707070"
-              onChangeText={value => this.setState({mobile: value})}
+              onChangeText={value => this.setState({ mobile: value })}
               placeholder="Mobile Number..."
               style={styles.text_input}
             />
@@ -160,13 +160,43 @@ class Login extends React.Component {
             <TextInput
               value={this.state.email}
               placeholderTextColor="#707070"
-              onChangeText={value => this.setState({email: value})}
+              onChangeText={value => this.setState({ email: value })}
               placeholder="E-mail Id..."
               style={styles.text_input}
             />
           </View>
           {this.state.emailError ? (
             <Text style={styles.errorText}>Enter valid e-mail id</Text>
+          ) : null}
+
+          <Text style={styles.text_footer}>UPI Number</Text>
+          <View style={styles.action}>
+            <FontAwesome name="user-o" size={18} color={'#05357a'} />
+            <TextInput
+              value={this.state.upi}
+              placeholderTextColor="#707070"
+              onChangeText={value => this.setState({ upi: value })}
+              placeholder="Student Name..."
+              style={styles.text_input}
+            />
+          </View>
+          {this.state.upiError ? (
+            <Text style={styles.errorText}>UPI cannot be blank</Text>
+          ) : null}
+
+          <Text style={styles.text_footer}>Sponsor User Name</Text>
+          <View style={styles.action}>
+            <FontAwesome name="user-o" size={18} color={'#05357a'} />
+            <TextInput
+              value={this.state.sponsor}
+              placeholderTextColor="#707070"
+              onChangeText={value => this.setState({ sponsor: value })}
+              placeholder="Student Name..."
+              style={styles.text_input}
+            />
+          </View>
+          {this.state.sponsorError ? (
+            <Text style={styles.errorText}>Sponsor name cannot be blank</Text>
           ) : null}
 
           <Button
@@ -199,23 +229,23 @@ class Login extends React.Component {
         </Animatable.View>
         <Toast
           ref={toast => (this.toast = toast)}
-          style={{backgroundColor: 'red'}}
-          position="bottom"
-          opacity={0.8}
-          textStyle={{color: '#FFFFFF'}}
+          style={{ backgroundColor: '#e53e3e' }}
+          position="top"
+          opacity={1}
+          textStyle={{ color: '#FFFFFF' }}
         />
       </View>
     );
   }
 }
 
-const {height} = Dimensions.get('screen');
+const { height } = Dimensions.get('screen');
 const height_logo = height * 0.7 * 0.4;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#05357a',
+    backgroundColor: '#5a67d8',
   },
   header: {
     flex: 1,
@@ -267,7 +297,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  return {...state};
+  return { ...state };
 };
 
 const mapDispatchToProps = dispatch =>
@@ -278,4 +308,4 @@ const mapDispatchToProps = dispatch =>
     dispatch,
   );
 
-const LoginWrapper = connect(mapStateToProps, mapDispatchToProps)(Login);
+const RegisterWrapper = connect(mapStateToProps, mapDispatchToProps)(Register);

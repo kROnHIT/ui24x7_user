@@ -1,6 +1,6 @@
-import {all, call, fork, put, takeEvery, delay} from 'redux-saga/effects';
+import { all, call, fork, put, takeEvery, delay } from 'redux-saga/effects';
 import AsyncStorage from '@react-native-community/async-storage';
-import {ToastActionsCreators} from 'react-native-redux-toast';
+import { ToastActionsCreators } from 'react-native-redux-toast';
 
 import {
   CHECK_USER,
@@ -9,6 +9,7 @@ import {
   REGISTER_USER,
   GET_STATE,
   GET_CITY,
+  ENQUIRY
 } from '../actions';
 
 import {
@@ -20,11 +21,12 @@ import {
   getStateError,
   getCitySuccess,
   getCityError,
+  enquirySuccess,
+  enquiryError
 } from '../actions';
 
 const loginWithPasswordAsync = async data => {
-  const {userName, password} = data;
-  console.log('b', userName, password);
+  const { userName, password } = data;
   const resp = await fetch(
     `http://34.131.47.126:8080/upcharindia/CheckLoginDetails?USERNAME=${userName}&PASSWORD=${password}`,
     {
@@ -40,13 +42,11 @@ const loginWithPasswordAsync = async data => {
 
 function* loginWithPassword(action) {
   try {
-    console.log('action', action);
     let Res = yield call(loginWithPasswordAsync, action.payload.data);
-    console.log('Res', Res);
     if (Res && Res.Statuscode === 1) {
       AsyncStorage.setItem('user', JSON.stringify(Res.loginBean));
       action.payload.data.callback();
-      yield put(loginWithPasswordSuccess({success: true, user: Res.loginBean}));
+      yield put(loginWithPasswordSuccess({ success: true, user: Res.loginBean }));
     } else {
       yield put(
         loginWithPasswordSuccess({
@@ -77,23 +77,23 @@ const logoutAsync = async () => {
   AsyncStorage.removeItem('user');
 };
 
-function* logout({payload}) {
+function* logout({ payload }) {
   try {
     yield call(logoutAsync);
-    payload.navigation.navigate('LoginStackScreen', {screen: 'Login'});
-  } catch (error) {}
+    payload.navigation.navigate('LoginStackScreen', { screen: 'Login' });
+  } catch (error) { }
 }
 
 function* checkUser(action) {
   try {
-    yield put(loginWithPasswordSuccess({user: action.payload.value}));
+    yield put(loginWithPasswordSuccess({ user: action.payload.value }));
     action.payload.callback();
-  } catch (error) {}
+  } catch (error) { }
 }
 
 const registerUserAsync = async data => {
   const resp = await fetch(
-    `http://173.255.115.76:8080/kthunt/SignUpStudentAPI?${data}`,
+    `http://34.131.47.126:8080/upcharindia/AddUser?${data}`,
     {
       method: 'GET',
       headers: {
@@ -107,21 +107,19 @@ const registerUserAsync = async data => {
 
 function* registerUser(action) {
   try {
+    console.log('action', action);
     let Res1 = yield call(registerUserAsync, action.payload.data);
+    console.log('Res1', Res1);
     if (Res1 && Res1.Statuscode === 1) {
-      let Res2 = yield call(loginWithPasswordAsync, action.payload.mobile);
-      console.log('Res2', Res2);
-      if (Res2 && Res2.Statuscode === 1) {
-        AsyncStorage.setItem('user', JSON.stringify(Res2.studentBean));
-        action.payload.callback(Res2);
-        yield put(
-          loginWithPasswordSuccess({success: true, user: Res2.studentBean}),
-        );
-      }
+      AsyncStorage.setItem('user', JSON.stringify(Res1.loginBean));
+      action.payload.callback(Res1);
+      // yield put(
+      //   loginWithPasswordSuccess({ success: true, user: Res1.loginBean }),
+      // );
       yield put(
-        registerUserSuccess({success: true, user: '', message: Res2.Message}),
+        registerUserSuccess({ success: true, user: Res1.loginBean, message: Res1.Message }),
       );
-      yield put(registerUserSuccess({success: true, user: '', message: ''}));
+      yield put(registerUserSuccess({ success: true, message: '' }));
     } else {
       yield put(
         registerUserError({
@@ -155,10 +153,10 @@ function* getState(action) {
   try {
     let Res = yield call(getStateAsync);
     if (Res) {
-      yield put(getStateSuccess({success: true, state: Res.LoginResponse}));
+      yield put(getStateSuccess({ success: true, state: Res.LoginResponse }));
     } else {
       action.payload.data.callback(Res);
-      yield put(getStateSuccess({success: true, state: ''}));
+      yield put(getStateSuccess({ success: true, state: '' }));
     }
   } catch (error) {
     yield put(
@@ -186,20 +184,60 @@ const getCityAsync = async city => {
 
 function* getCity(action) {
   try {
-    console.log('action', action);
     let Res = yield call(getCityAsync, action.payload);
-    console.log('Res', Res);
     if (Res) {
-      yield put(getCitySuccess({success: true, city: Res.LoginResponse}));
+      yield put(getCitySuccess({ success: true, city: Res.LoginResponse }));
     } else {
       action.payload.data.callback(Res);
-      yield put(getCitySuccess({success: true, city: ''}));
+      yield put(getCitySuccess({ success: true, city: '' }));
     }
   } catch (error) {
     yield put(
       getCityError({
         success: false,
         message: 'Try Again Later!',
+      }),
+    );
+  }
+}
+
+
+const enquiryAsync = async data => {
+  const resp = await fetch(
+    `http://34.131.47.126:8080/upcharindia/GenerateEnquiry?${data}`,
+    {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+  return resp.json();
+};
+
+function* enquiry(action) {
+  try {
+    let Res1 = yield call(enquiryAsync, action.payload.data);
+    if (Res1 && Res1.Statuscode === 1) {
+      yield put(
+        enquirySuccess({ success: true, message: Res1.Message }),
+      );
+      action.payload.callback(Res1);
+      yield put(enquirySuccess({ success: true, message: '' }));
+    } else {
+      yield put(
+        enquiryError({
+          success: false,
+          message: Res1.Message,
+        }),
+      );
+    }
+  } catch (error) {
+    yield put(
+      enquiryError({
+        success: false,
+        message: 'Invalid mobile or password!',
       }),
     );
   }
@@ -223,6 +261,9 @@ export function* watchGetState() {
 export function* watchGetCity() {
   yield takeEvery(GET_CITY, getCity);
 }
+export function* watchEnquiry() {
+  yield takeEvery(ENQUIRY, enquiry);
+}
 
 export default function* rootSaga() {
   yield all([
@@ -232,5 +273,6 @@ export default function* rootSaga() {
     fork(watchRegisterUser),
     fork(watchGetState),
     fork(watchGetCity),
+    fork(watchEnquiry),
   ]);
 }

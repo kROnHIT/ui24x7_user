@@ -9,9 +9,9 @@ import {
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useIsFocused} from '@react-navigation/native';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { useIsFocused } from '@react-navigation/native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 export default Home = props => {
   const isFocused = useIsFocused();
@@ -24,11 +24,10 @@ class Home extends React.Component {
     this.state = {};
   }
   render() {
-    console.log('this.props', this.props);
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.cardsWrapper}>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <Text
               style={{
                 fontSize: 18,
@@ -55,40 +54,40 @@ class Home extends React.Component {
               </Text>
             </TouchableOpacity>
           </View>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <TouchableOpacity
-              style={{...styles.card}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              style={{ ...styles.card }}
+              onPress={() => this.props.props.navigation.navigate('Classified', { classifiedName: 'Doctor' })}>
               <View style={styles.cardIcon}>
                 <Fontisto name="doctor" size={30} color="#d53f8c" />
               </View>
-              <Text style={{...styles.cardTxt, color: '#d53f8c', marginTop: 5}}>
+              <Text style={{ ...styles.cardTxt, color: '#d53f8c', marginTop: 5 }}>
                 Doctor
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              style={{ ...styles.card }}
+              onPress={() => this.props.props.navigation.navigate('Classified', { classifiedName: 'Hospital' })}>
               <View style={styles.cardIcon}>
                 <FontAwesome5 name="hospital" size={30} color="#805ad5" />
               </View>
-              <Text style={{...styles.cardTxt, color: '#805ad5', marginTop: 5}}>
+              <Text style={{ ...styles.cardTxt, color: '#805ad5', marginTop: 5 }}>
                 Hospital
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              style={{ ...styles.card }}
+              onPress={() => this.props.props.navigation.navigate('Classified', { classifiedName: 'Ambulance' })}>
               <View style={styles.cardIcon}>
                 <FontAwesome5 name="ambulance" size={30} color="#5a67d8" />
               </View>
-              <Text style={{...styles.cardTxt, color: '#5a67d8', marginTop: 5}}>
+              <Text style={{ ...styles.cardTxt, color: '#5a67d8', marginTop: 5 }}>
                 Ambulance
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{...styles.card}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              style={{ ...styles.card }}
+              onPress={() => this.props.props.navigation.navigate('Classified', { classifiedName: 'FireBrigade' })}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons
                   name="fire-truck"
@@ -96,7 +95,7 @@ class Home extends React.Component {
                   color="#dd6b20"
                 />
               </View>
-              <Text style={{...styles.cardTxt, color: '#dd6b20', marginTop: 5}}>
+              <Text style={{ ...styles.cardTxt, color: '#dd6b20', marginTop: 5 }}>
                 Fire Brigade
               </Text>
             </TouchableOpacity>
@@ -108,7 +107,7 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {...state};
+  return { ...state };
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
@@ -126,7 +125,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     elevation: 2,
     padding: 5,
-    paddingBottom:8
+    paddingBottom: 8
   },
   card: {
     flex: 1,

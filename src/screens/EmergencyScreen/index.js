@@ -27,7 +27,6 @@ class Home extends React.Component {
     this.state = {};
   }
   render() {
-    console.log('this.props', this.props);
     return (
       <SafeAreaView style={styles.container}>
         <Header props={this.props} />
