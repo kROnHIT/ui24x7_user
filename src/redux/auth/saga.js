@@ -67,7 +67,7 @@ function* loginWithPassword(action) {
     yield put(
       loginWithPasswordError({
         success: false,
-        message: 'Try again later.',
+        message: error,
       }),
     );
   }

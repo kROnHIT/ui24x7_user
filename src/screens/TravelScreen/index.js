@@ -48,7 +48,7 @@ class Home extends React.Component {
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity
               style={{...styles.card, backgroundColor: '#fff5f7'}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'Flight' })}>
               <View style={styles.cardIcon}>
                 <Entypo name="aircraft" size={35} color="#d53f8c" />
               </View>
@@ -56,7 +56,7 @@ class Home extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{...styles.card, backgroundColor: '#faf5ff'}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'Bus' })}>
               <View style={styles.cardIcon}>
                 <FontAwesome5 name="bus-alt" size={35} color="#805ad5" />
               </View>
@@ -64,7 +64,7 @@ class Home extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{...styles.card, backgroundColor: '#ebf4ff'}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'Trains' })}>
               <View style={styles.cardIcon}>
                 <FontAwesome5 name="train" size={35} color="#5a67d8" />
               </View>
@@ -75,7 +75,7 @@ class Home extends React.Component {
           <View style={{flexDirection: 'row', marginTop: 7}}>
             <TouchableOpacity
               style={{...styles.card, backgroundColor: '#fffaf0'}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'CarRentals' })}>
               <View style={styles.cardIcon}>
                 <FontAwesome5 name="car-side" size={35} color="#dd6b20" />
               </View>
@@ -85,7 +85,7 @@ class Home extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{...styles.card, backgroundColor: '#f0fff4'}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'BikeRentals' })}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons
                   name="motorbike"
@@ -99,7 +99,7 @@ class Home extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{...styles.card, backgroundColor: '#fff5f7'}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'Tempo' })}>
               <View style={styles.cardIcon}>
                 <FontAwesome5 name="truck" size={35} color="#d53f8c" />
               </View>
@@ -110,7 +110,7 @@ class Home extends React.Component {
           <View style={{flexDirection: 'row', marginTop: 7}}>
             <TouchableOpacity
               style={{...styles.card, backgroundColor: '#ebf8ff'}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'Hotels' })}>
               <View style={styles.cardIcon}>
                 <FontAwesome5 name="hotel" size={35} color="#3182ce" />
               </View>
@@ -118,7 +118,7 @@ class Home extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{...styles.card, backgroundColor: '#fffff0'}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'Resorts' })}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons name="water-well" size={35} color="#d69e2e" />
               </View>

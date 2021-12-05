@@ -47,7 +47,7 @@ class Home extends React.Component {
           <View style={{ flexDirection: 'row' }}>
             <TouchableOpacity
               style={{ ...styles.card, backgroundColor: '#fff5f7' }}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'Doctor' })}>
               <View style={styles.cardIcon}>
                 <Fontisto
                   name="doctor"
@@ -59,7 +59,7 @@ class Home extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{ ...styles.card, backgroundColor: '#faf5ff' }}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'Hospital' })}>
               <View style={styles.cardIcon}>
                 <FontAwesome5
                   name="hospital"
@@ -73,7 +73,7 @@ class Home extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{ ...styles.card, backgroundColor: '#ebf4ff' }}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'Ambulance' })}>
               <View style={styles.cardIcon}>
                 <FontAwesome5
                   name="ambulance"
@@ -90,7 +90,7 @@ class Home extends React.Component {
           <View style={{ flexDirection: 'row', marginTop: 7 }}>
             <TouchableOpacity
               style={{ ...styles.card, backgroundColor: '#fffaf0' }}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'FireBrigade' })}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons
                   name="fire-truck"
@@ -104,7 +104,7 @@ class Home extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{ ...styles.card, backgroundColor: '#f0fff4' }}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'PoliceStation' })}>
               <View style={styles.cardIcon}>
                 <Ionicons
                   name="business"
@@ -118,7 +118,7 @@ class Home extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{ ...styles.card, backgroundColor: '#fff5f7' }}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'BloodBanks' })}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons
                   name="blood-bag"
@@ -135,7 +135,7 @@ class Home extends React.Component {
           <View style={{ flexDirection: 'row', marginTop: 7 }}>
             <TouchableOpacity
               style={{ ...styles.card, backgroundColor: '#ebf8ff' }}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'Towing' })}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons
                   name="tow-truck"
@@ -149,7 +149,7 @@ class Home extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{ ...styles.card, backgroundColor: '#fffff0' }}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'MedicalStore' })}>
               <View style={styles.cardIcon}>
                 <FontAwesome5
                   name="clinic-medical"

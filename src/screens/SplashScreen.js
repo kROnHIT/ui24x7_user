@@ -35,14 +35,13 @@ class Splash extends React.Component {
   checkUserData = async () => {
     try {
       const valueString = await AsyncStorage.getItem('user');
-      console.log('valueString', valueString);
       const value = JSON.parse(valueString);
       if (value && value !== null) {
         await this.props.checkUser({
           value,
           navigation: this.props.navigation,
           callback: () => {
-            this.props.navigation.navigate('App', { screen: 'Home' });
+            this.props.navigation.navigate('App', { screen: 'HomeScreen' });
           },
         });
       }
@@ -51,8 +50,8 @@ class Splash extends React.Component {
 
   render() {
     const {user} = this.state;
-    console.log('state', this.state);
-    console.log('lklklklklk', this.props);
+    // console.log('state', this.state);
+    // console.log('lklklklklk', this.props);
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Animated.Text

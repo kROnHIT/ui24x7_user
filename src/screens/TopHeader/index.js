@@ -152,11 +152,12 @@ class Header extends React.Component {
 
   render() {
     const {setCity} = this.props.auth;
+    console.log("newProps", this.props.auth);
     return (
       <View>
         <TopNavigation
           alignment="center"
-          title={
+          title={props => (
             <Text
               onPress={() => this.openStateLocation(true)}
               style={{
@@ -170,7 +171,7 @@ class Header extends React.Component {
                 : 'Select Location'}
               <Ionicons name="location-outline" size={15} color="#ffffff" />
             </Text>
-          }
+          )}
           accessoryLeft={this.RenderHeaderTitle}
           accessoryRight={this.RenderRightTitle}
           style={{backgroundColor: '#5a67d8', paddingHorizontal: 20}}
@@ -254,11 +255,6 @@ const styles = StyleSheet.create({
     elevation: 10,
     borderTopStartRadius: 20,
     borderTopEndRadius: 20,
-  },
-  modalView: {
-    paddingHorizontal: 20,
-    paddingBottom: 20,
-    alignItems: 'center',
   },
   centerIcon: {
     alignItems: 'center',

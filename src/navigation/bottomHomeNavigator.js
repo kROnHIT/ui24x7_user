@@ -16,6 +16,7 @@ import Enquiry from '../screens/EnquiryScreen';
 import Classified from '../screens/ClassifiedScreen';
 import Splash from '../screens/SplashScreen';
 import TopHeader from '../screens/TopHeader';
+import SearchResult from '../screens/HomeScreen/SearchResult';
 
 const Tabs = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -79,6 +80,7 @@ function HomeStackScreen() {
       <HomeStack.Screen name="Profile" component={Profile} />
       <HomeStack.Screen name="Enquiry" component={Enquiry} />
       <HomeStack.Screen name="Classified" component={Classified} />
+      <HomeStack.Screen name="SearchResult" component={SearchResult} />
     </HomeStack.Navigator>
   );
 }
@@ -170,7 +172,7 @@ const TabsScreen = () => {
         })}
       />
       <Tabs.Screen
-        name="Home"
+        name="HomeScreen"
         component={HomeStackScreen}
         options={{
           tabBarIcon: ({focused}) => (
@@ -247,7 +249,12 @@ const RootStack = createStackNavigator();
 
 const RootStackScreen = () => {
   return (
-    <RootStack.Navigator headerMode="none" initialRouteName="Splash">
+    <RootStack.Navigator
+      tabBarOptions={{
+        keyboardHidesTabBar: false,
+      }}
+      headerMode="none"
+      initialRouteName="Splash">
       <RootStack.Screen
         name="Splash"
         component={Splash}

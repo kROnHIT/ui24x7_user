@@ -44,13 +44,13 @@ class Home extends React.Component {
                 flex: 1,
                 marginLeft: 5,
               }}>
-              Booking
+              Services
             </Text>
           </View>
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity
               style={{...styles.card, backgroundColor: '#fff5f7'}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'Education' })}>
               <View style={styles.cardIcon}>
                 <FontAwesome name="book" size={35} color="#d53f8c" />
               </View>
@@ -60,7 +60,7 @@ class Home extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{...styles.card, backgroundColor: '#faf5ff'}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'Consultants' })}>
               <View style={styles.cardIcon}>
                 <Fontisto
                   name="user-secret"
@@ -74,7 +74,7 @@ class Home extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{...styles.card, backgroundColor: '#fffff0'}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'RentHire' })}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons
                   name="account-search"
@@ -91,7 +91,7 @@ class Home extends React.Component {
           <View style={{flexDirection: 'row', marginTop: 7}}>
             <TouchableOpacity
               style={{...styles.card, backgroundColor: '#fffaf0'}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'HomeServices' })}>
               <View style={styles.cardIcon}>
                 <Ionicons name="construct" size={35} color="#dd6b20" />
               </View>
@@ -101,7 +101,7 @@ class Home extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{...styles.card, backgroundColor: '#f0fff4'}}
-              onPress={() => this.props.navigation.navigate('SecurityAlert')}>
+              onPress={() => this.props.navigation.navigate('Classified', { classifiedName: 'RealEstate' })}>
               <View style={styles.cardIcon}>
                 <MaterialCommunityIcons name="sign-real-estate" size={35} color="#38a169" />
               </View>

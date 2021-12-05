@@ -60,7 +60,7 @@ class Drawer extends React.Component {
           <View style={styles.item}>
             <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate('Home');
+                this.props.navigation.navigate('HomeScreen', {screen: 'Home'});
               }}
               style={{flex: 1, flexDirection: 'row'}}>
               <Ionicons name="home" size={20} color={'#05357a'} />
@@ -145,7 +145,7 @@ class Drawer extends React.Component {
               <Text style={styles.title}>Logout</Text>
             </TouchableOpacity>
           </View>
-          <Divider />
+          {/* <Divider />
           <View style={{flexDirection: 'row', paddingLeft: 30, marginTop: 5}}>
             <Ionicons
               onPress={() =>
@@ -176,7 +176,7 @@ class Drawer extends React.Component {
               size={22}
               color={'#373737'}
             />
-          </View>
+          </View> */}
         </View>
       </View>
     );

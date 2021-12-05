@@ -10,25 +10,9 @@ import { Provider } from "react-redux";
 import { configureStore } from "./redux/store";
 import BottomNavigation from "./navigation";
 import { Toast } from 'react-native-redux-toast';
-// import Parse from "parse/react-native";
-let Parse = require("parse/react-native");
 
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    Parse.setAsyncStorage(AsyncStorage);
-    Parse.enableLocalDatastore();
-    Parse.serverURL =
-      "https://pg-app-bv2ddzwkb7rrzqv1ru1wxls7l1rle4.scalabl.cloud/1/"
-      Parse.initialize(
-        "MS0KGvWKL7H1hfYqct7UyuORiHb7NQWKRNU9GpRN",
-        "2ctIpehO2SxKyGN7YziBT66WhR9RpLOHUNNKUbIG",
-      );
-    Text.defaultProps = Text.defaultProps || {};
-    Text.defaultProps.allowFontScaling = false;
-  }
-
   render() {
     return (
       <Provider store={configureStore({})}>

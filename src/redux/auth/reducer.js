@@ -48,7 +48,7 @@ export default (state = INIT_STATE, action) => {
     case LOGIN_WITH_PASSWORD_ERROR:
       return { ...state, loading: false, ...action.payload };
     case LOGOUT_USER:
-      return { ...state, user: null, error: '' };
+      return { ...state, user: null, error: '', loading: false };
     case REGISTER_USER:
       return { ...state, loading: true };
     case REGISTER_USER_SUCCESS:
@@ -68,7 +68,7 @@ export default (state = INIT_STATE, action) => {
     case GET_CITY_ERROR:
       return { ...state, loading: false, ...action.payload };
     case SET_CITY:
-      return { ...state, loading: true, setCity: action.payload };
+      return { ...state, setCity: action.payload };
     case ENQUIRY:
       return { ...state, loading: true };
     case ENQUIRY_SUCCESS:

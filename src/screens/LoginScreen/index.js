@@ -18,8 +18,8 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: '3647579',
-            password: '99965',
+            userName: '',
+            password: '',
             isUserExit: false,
         };
     }
@@ -61,12 +61,13 @@ class Login extends React.Component {
             <View>
                 <View style={{ marginTop: 130, alignItems: "center", justifyContent: "center" }}>
                     <Image source={require("../../../asset/logo.png")} />
-                    <Text style={[styles.text, { marginTop: 10, fontSize: 22, fontWeight: "500" }]}>UI24x7</Text>
+                    {/* <Text style={[styles.text, { marginTop: 10, fontSize: 22, fontWeight: "500" }]}>UI24x7</Text> */}
                 </View>
-                <View style={{ padding: 10, borderRadius: 10, shadowColor: '#ccc' }}>
+                <View style={{ padding: 10, borderRadius: 10, shadowColor: '#ccc', marginTop:20 }}>
                     <TextInput
                         value={this.state.userName}
-                        placeholder="Phone Number"
+                        placeholder="User Name"
+                        placeholderTextColor="#707070"
                         style={styles.input}
                         keyboardType='numeric'
                         onChangeText={(value) => this.setState({ userName: value })}
@@ -74,11 +75,12 @@ class Login extends React.Component {
                     <TextInput
                         value={this.state.password}
                         placeholder="Password"
+                        placeholderTextColor="#707070"
                         style={{ ...styles.input, marginTop: 10 }}
                         onChangeText={(value) => this.setState({ password: value })}
                     />
                     <Button
-                        status="info"
+                        status="primary"
                         style={{ marginTop: 10 }}
                         disabled={auth.loading ? true : false}
                         onPress={() => {
@@ -88,7 +90,7 @@ class Login extends React.Component {
                     </Button>
 
                     <Button
-                        status="info"
+                        status="primary"
                         appearance="outline"
                         style={{ marginTop: 10 }}
                         onPress={() => {

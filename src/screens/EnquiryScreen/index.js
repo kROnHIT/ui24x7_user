@@ -8,14 +8,15 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import { Button } from '@ui-kitten/components';
+import {Button} from '@ui-kitten/components';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { useIsFocused } from '@react-navigation/native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {useIsFocused} from '@react-navigation/native';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import Header from '../TopHeader';
-import { enquiry } from '../../redux/actions';
-import Toast, { DURATION } from 'react-native-easy-toast';
+import {enquiry} from '../../redux/actions';
+import Toast, {DURATION} from 'react-native-easy-toast';
+import {Picker} from '@react-native-picker/picker';
 
 export default Home = props => {
   const isFocused = useIsFocused();
@@ -25,11 +26,15 @@ export default Home = props => {
 class Home extends React.Component {
   constructor(props) {
     super(props);
+
+    const {auth} = this.props;
+
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      mobile: '',
+      firstName: auth.user && auth.user.LOGIN_NAME ? auth.user.LOGIN_NAME : '',
+      lastName: '.',
+      email: auth.user && auth.user.EMAIL ? auth.user.EMAIL : '',
+      mobile:
+        auth.user && auth.user.MOBILE_NUMBER ? auth.user.MOBILE_NUMBER : '',
       message: '',
       services: '',
       firstNameError: '',
@@ -46,44 +51,38 @@ class Home extends React.Component {
   }
 
   sumbit = async () => {
-    const { firstName, lastName, email, mobile, message, services } = this.state;
+    const {firstName, lastName, email, mobile, message, services} = this.state;
     let noError = true;
 
     if (!firstName) {
-      this.setState({ firstNameError: true });
+      this.setState({firstNameError: true});
       noError = false;
     } else {
-      this.setState({ firstNameError: false });
-    }
-    if (!lastName) {
-      this.setState({ lastNameError: true });
-      noError = false;
-    } else {
-      this.setState({ lastNameError: false });
+      this.setState({firstNameError: false});
     }
     if (!email) {
-      this.setState({ emailError: true });
+      this.setState({emailError: true});
       noError = false;
     } else {
-      this.setState({ emailError: false });
+      this.setState({emailError: false});
     }
     if (!mobile) {
-      this.setState({ mobileError: true });
+      this.setState({mobileError: true});
       noError = false;
     } else {
-      this.setState({ mobileError: false });
+      this.setState({mobileError: false});
     }
     if (!message) {
-      this.setState({ messageError: true });
+      this.setState({messageError: true});
       noError = false;
     } else {
-      this.setState({ messageError: false });
+      this.setState({messageError: false});
     }
     if (!services) {
-      this.setState({ servicesError: true });
+      this.setState({servicesError: true});
       noError = false;
     } else {
-      this.setState({ servicesError: false });
+      this.setState({servicesError: false});
     }
     if (noError) {
       // let data = `STUDENT_NAME=${name}&MOBILE_NUMBER=${mobile}&EMAIL_ID=${email}`;
@@ -91,16 +90,15 @@ class Home extends React.Component {
 
       this.props.enquiry({
         data: data,
-        callback: (res) => {
+        callback: res => {
           if (res) {
             this.setState({
               firstName: '',
-              lastName: '',
               email: '',
               mobile: '',
               message: '',
-              services: ''
-            })
+              services: '',
+            });
             this.showToast(res.Message, 1000);
           }
         },
@@ -111,39 +109,25 @@ class Home extends React.Component {
   };
 
   render() {
-    const { auth } = this.props;
+    const {auth} = this.props;
+    console.log('auth', auth);
     return (
       <SafeAreaView style={styles.container}>
         <Header props={this.props} />
         <View style={styles.cardsWrapper}>
-          <Text style={styles.text_footer}>First Name</Text>
+          <Text style={styles.text_footer}>Name</Text>
           <View style={styles.action}>
             <FontAwesome name="user-o" size={18} color={'#05357a'} />
             <TextInput
               value={this.state.firstName}
               placeholderTextColor="#707070"
-              onChangeText={value => this.setState({ firstName: value })}
-              placeholder="Student Name..."
+              onChangeText={value => this.setState({firstName: value})}
+              placeholder="Name..."
               style={styles.text_input}
             />
           </View>
           {this.state.firstNameError ? (
-            <Text style={styles.errorText}>First name cannot be blank</Text>
-          ) : null}
-
-          <Text style={styles.text_footer}>Last Name</Text>
-          <View style={styles.action}>
-            <FontAwesome name="user-o" size={18} color={'#05357a'} />
-            <TextInput
-              value={this.state.lastName}
-              placeholderTextColor="#707070"
-              onChangeText={value => this.setState({ lastName: value })}
-              placeholder="Student Name..."
-              style={styles.text_input}
-            />
-          </View>
-          {this.state.lastNameError ? (
-            <Text style={styles.errorText}>Last  name cannot be blank</Text>
+            <Text style={styles.errorText}>Name cannot be blank</Text>
           ) : null}
 
           <Text style={styles.text_footer}>E-mail Id</Text>
@@ -152,7 +136,7 @@ class Home extends React.Component {
             <TextInput
               value={this.state.email}
               placeholderTextColor="#707070"
-              onChangeText={value => this.setState({ email: value })}
+              onChangeText={value => this.setState({email: value})}
               placeholder="E-mail Id..."
               style={styles.text_input}
             />
@@ -169,7 +153,7 @@ class Home extends React.Component {
               maxLength={10}
               value={this.state.mobile}
               placeholderTextColor="#707070"
-              onChangeText={value => this.setState({ mobile: value })}
+              onChangeText={value => this.setState({mobile: value})}
               placeholder="Mobile Number..."
               style={styles.text_input}
             />
@@ -181,14 +165,16 @@ class Home extends React.Component {
           ) : null}
 
           <Text style={styles.text_footer}>Message</Text>
-          <View style={styles.action}>
+          <View style={{...styles.action}}>
             <FontAwesome name="envelope-o" size={18} color={'#05357a'} />
             <TextInput
+              multiline
+              numberOfLines={4}
               value={this.state.message}
               placeholderTextColor="#707070"
-              onChangeText={value => this.setState({ message: value })}
+              onChangeText={value => this.setState({message: value})}
               placeholder="Message..."
-              style={styles.text_input}
+              style={{...styles.text_input, height: 70}}
             />
           </View>
           {this.state.messageError ? (
@@ -198,13 +184,28 @@ class Home extends React.Component {
           <Text style={styles.text_footer}>Service</Text>
           <View style={styles.action}>
             <FontAwesome name="gear" size={18} color={'#05357a'} />
-            <TextInput
+            {/* <TextInput
               value={this.state.services}
               placeholderTextColor="#707070"
-              onChangeText={value => this.setState({ services: value })}
-              placeholder="Student Name..."
+              onChangeText={value => this.setState({services: value})}
+              placeholder="Service Name..."
               style={styles.text_input}
-            />
+            /> */}
+            <Picker
+              selectedValue={this.state.services}
+              style={styles.text_input}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({services: itemValue})
+              }>
+              <Picker.Item label="Doctor" value="Doctor" />
+              <Picker.Item label="Hospital" value="Hospital" />
+              <Picker.Item label="Ambulance" value="Ambulance" />
+              <Picker.Item label="Fire Brigade" value="Fire Brigade" />
+              <Picker.Item label="Police Station" value="Police Station" />
+              <Picker.Item label="Blood Banks" value="Blood Banks" />
+              <Picker.Item label="Towing" value="Towing" />
+              <Picker.Item label="Medical Store" value="Medical Store" />
+            </Picker>
           </View>
           {this.state.servicesError ? (
             <Text style={styles.errorText}>Services cannot be blank</Text>
@@ -226,10 +227,10 @@ class Home extends React.Component {
         </View>
         <Toast
           ref={toast => (this.toast = toast)}
-          style={{ backgroundColor: '#5a67d8' }}
+          style={{backgroundColor: '#5a67d8'}}
           position="top"
           opacity={1}
-          textStyle={{ color: '#FFFFFF' }}
+          textStyle={{color: '#FFFFFF'}}
         />
       </SafeAreaView>
     );
@@ -237,14 +238,14 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { ...state };
+  return {...state};
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({ enquiry }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({enquiry}, dispatch);
 
 const HomeWrapper = connect(mapStateToProps, mapDispatchToProps)(Home);
 
-const { height } = Dimensions.get('screen');
+const {height} = Dimensions.get('screen');
 const height_logo = height * 0.7 * 0.4;
 
 const styles = StyleSheet.create({
@@ -298,6 +299,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 5,
     alignItems: 'center',
+    height: 40,
   },
   text_input: {
     flex: 1,
@@ -310,4 +312,5 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#e32f45',
   },
+  
 });

@@ -1,4 +1,4 @@
-package com.ui24x7user;
+package com.ui24x7;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "UI24x7";
+    return "ui24x7";
   }
 }
