@@ -18,9 +18,6 @@ import Travel from './travel';
 import Toast, {DURATION} from 'react-native-easy-toast';
 import Services from './services';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Geolocation from '@react-native-community/geolocation';
-import Geocoder from 'react-native-geocoder';
-import {setCity} from '../../redux/actions';
 
 export default Home = props => {
   const isFocused = useIsFocused();
@@ -31,25 +28,6 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {searchKeyboard: ''};
-  }
-
-  componentDidMount() {
-    if (this.props.auth.setCity.length === 0) {
-      Geolocation.getCurrentPosition(position => {
-        // console.log('position', position);
-        Geocoder.geocodePosition({
-          lat: 23.3754286,
-          lng: 85.3085613,
-          // lat: position.coords.latitude,
-          // lng: position.coords.longitude,
-        })
-          .then(res => {
-            console.log('res', res[0]);
-            this.props.setCity({city: res[0].locality, state: res[0].adminArea});
-          })
-          .catch(err => console.log(err));
-      });
-    }
   }
 
   async showToast(message, length = 1000) {
@@ -69,12 +47,11 @@ class Home extends React.Component {
       } else {
         this.showToast('Please enter to search.', 1000);
       }
-    } else {
+    }else{
       this.showToast('Please select city.', 1000);
     }
   };
   render() {
-    // console.log('props', this.props);
     return (
       <SafeAreaView style={styles.container}>
         <Header props={this.props} />
@@ -120,7 +97,7 @@ const mapStateToProps = state => {
   return {...state};
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({setCity}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
 const HomeWrapper = connect(mapStateToProps, mapDispatchToProps)(Home);
 

@@ -18,8 +18,8 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: '',
-            password: '',
+            userName: 'UICONNECT',
+            password: 'UICONNECT@12@32',
             isUserExit: false,
         };
     }

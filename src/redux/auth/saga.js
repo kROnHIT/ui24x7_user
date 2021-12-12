@@ -1,6 +1,6 @@
-import { all, call, fork, put, takeEvery, delay } from 'redux-saga/effects';
+import {all, call, fork, put, takeEvery, delay} from 'redux-saga/effects';
 import AsyncStorage from '@react-native-community/async-storage';
-import { ToastActionsCreators } from 'react-native-redux-toast';
+import {ToastActionsCreators} from 'react-native-redux-toast';
 
 import {
   CHECK_USER,
@@ -9,7 +9,8 @@ import {
   REGISTER_USER,
   GET_STATE,
   GET_CITY,
-  ENQUIRY
+  ENQUIRY,
+  SET_CITY,
 } from '../actions';
 
 import {
@@ -22,11 +23,13 @@ import {
   getCitySuccess,
   getCityError,
   enquirySuccess,
-  enquiryError
+  enquiryError,
+  setCitySuccess,
+  setCityError,
 } from '../actions';
 
 const loginWithPasswordAsync = async data => {
-  const { userName, password } = data;
+  const {userName, password} = data;
   const resp = await fetch(
     `http://34.131.47.126:8080/upcharindia/CheckLoginDetails?USERNAME=${userName}&PASSWORD=${password}`,
     {
@@ -46,7 +49,7 @@ function* loginWithPassword(action) {
     if (Res && Res.Statuscode === 1) {
       AsyncStorage.setItem('user', JSON.stringify(Res.loginBean));
       action.payload.data.callback();
-      yield put(loginWithPasswordSuccess({ success: true, user: Res.loginBean }));
+      yield put(loginWithPasswordSuccess({success: true, user: Res.loginBean}));
     } else {
       yield put(
         loginWithPasswordSuccess({
@@ -77,18 +80,18 @@ const logoutAsync = async () => {
   AsyncStorage.removeItem('user');
 };
 
-function* logout({ payload }) {
+function* logout({payload}) {
   try {
     yield call(logoutAsync);
-    payload.navigation.navigate('LoginStackScreen', { screen: 'Login' });
-  } catch (error) { }
+    payload.navigation.navigate('LoginStackScreen', {screen: 'Login'});
+  } catch (error) {}
 }
 
 function* checkUser(action) {
   try {
-    yield put(loginWithPasswordSuccess({ user: action.payload.value }));
+    yield put(loginWithPasswordSuccess({user: action.payload.value}));
     action.payload.callback();
-  } catch (error) { }
+  } catch (error) {}
 }
 
 const registerUserAsync = async data => {
@@ -117,9 +120,13 @@ function* registerUser(action) {
       //   loginWithPasswordSuccess({ success: true, user: Res1.loginBean }),
       // );
       yield put(
-        registerUserSuccess({ success: true, user: Res1.loginBean, message: Res1.Message }),
+        registerUserSuccess({
+          success: true,
+          user: Res1.loginBean,
+          message: Res1.Message,
+        }),
       );
-      yield put(registerUserSuccess({ success: true, message: '' }));
+      yield put(registerUserSuccess({success: true, message: ''}));
     } else {
       yield put(
         registerUserError({
@@ -153,10 +160,10 @@ function* getState(action) {
   try {
     let Res = yield call(getStateAsync);
     if (Res) {
-      yield put(getStateSuccess({ success: true, state: Res.LoginResponse }));
+      yield put(getStateSuccess({success: true, state: Res.LoginResponse}));
     } else {
       action.payload.data.callback(Res);
-      yield put(getStateSuccess({ success: true, state: '' }));
+      yield put(getStateSuccess({success: true, state: ''}));
     }
   } catch (error) {
     yield put(
@@ -186,10 +193,10 @@ function* getCity(action) {
   try {
     let Res = yield call(getCityAsync, action.payload);
     if (Res) {
-      yield put(getCitySuccess({ success: true, city: Res.LoginResponse }));
+      yield put(getCitySuccess({success: true, city: Res.LoginResponse}));
     } else {
       action.payload.data.callback(Res);
-      yield put(getCitySuccess({ success: true, city: '' }));
+      yield put(getCitySuccess({success: true, city: ''}));
     }
   } catch (error) {
     yield put(
@@ -200,7 +207,6 @@ function* getCity(action) {
     );
   }
 }
-
 
 const enquiryAsync = async data => {
   const resp = await fetch(
@@ -220,11 +226,9 @@ function* enquiry(action) {
   try {
     let Res1 = yield call(enquiryAsync, action.payload.data);
     if (Res1 && Res1.Statuscode === 1) {
-      yield put(
-        enquirySuccess({ success: true, message: Res1.Message }),
-      );
+      yield put(enquirySuccess({success: true, message: Res1.Message}));
       action.payload.callback(Res1);
-      yield put(enquirySuccess({ success: true, message: '' }));
+      yield put(enquirySuccess({success: true, message: ''}));
     } else {
       yield put(
         enquiryError({
@@ -238,6 +242,55 @@ function* enquiry(action) {
       enquiryError({
         success: false,
         message: 'Invalid mobile or password!',
+      }),
+    );
+  }
+}
+
+const setCityAsync = async city => {
+  const resp = await fetch(
+    'http://34.131.47.126:8080/upcharindia/CityList?STATE_ID=' + city,
+    {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+  return resp.json();
+};
+
+function* setCity(action) {
+  console.log('action', action);
+  try {
+    if (action.payload.CITY_ID) {
+      yield put(setCitySuccess({success: true, setCity: action.payload}));
+    } else {
+      let Res = yield call(getStateAsync);
+      if (Res && Res.Statuscode === 1) {
+        console.log('actionaction', Res);
+        var index = Res.LoginResponse.find(
+          p => p.STATE_NAME == action.payload.state,
+        );
+
+        let Res1 = yield call(getCityAsync, index.STATE_ID);
+
+        var index1 = Res1.LoginResponse.find(
+          p => p.CITY_NAME == action.payload.city,
+        );
+        AsyncStorage.setItem('setCity', JSON.stringify(Res.loginBean));
+        yield put(setCitySuccess({success: true, setCity: index1}));
+        console.log('index', index1);
+      } else {
+        yield put(setCitySuccess({success: true, setCity: ''}));
+      }
+    }
+  } catch (error) {
+    yield put(
+      setCityError({
+        success: false,
+        message: 'Try Again Later!',
       }),
     );
   }
@@ -264,6 +317,9 @@ export function* watchGetCity() {
 export function* watchEnquiry() {
   yield takeEvery(ENQUIRY, enquiry);
 }
+export function* watchSetCity() {
+  yield takeEvery(SET_CITY, setCity);
+}
 
 export default function* rootSaga() {
   yield all([
@@ -274,5 +330,6 @@ export default function* rootSaga() {
     fork(watchGetState),
     fork(watchGetCity),
     fork(watchEnquiry),
+    fork(watchSetCity),
   ]);
 }

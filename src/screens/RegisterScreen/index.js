@@ -205,7 +205,7 @@ class Register extends React.Component {
             />
           </View>
           <Text style={{color: '#5a67d8', fontSize: 12, marginTop: 0}}>
-            * Type 'UI24X7' if you don't have Sponsor Name
+            * Type 'UICONNECT' if you don't have Sponsor Name
           </Text>
           {this.state.sponsorError ? (
             <Text style={styles.errorText}>Sponsor name cannot be blank</Text>

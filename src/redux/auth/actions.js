@@ -16,6 +16,8 @@ import {
   GET_CITY_SUCCESS,
   GET_CITY_ERROR,
   SET_CITY,
+  SET_CITY_SUCCESS,
+  SET_CITY_ERROR,
   ENQUIRY,
   ENQUIRY_SUCCESS,
   ENQUIRY_ERROR,
@@ -89,6 +91,14 @@ export const getCityError = (message) => ({
 export const setCity = (data) => ({
   type: SET_CITY,
   payload: data
+});
+export const setCitySuccess = (items) => ({
+  type: SET_CITY_SUCCESS,
+  payload: items
+});
+export const setCityError = (message) => ({
+  type: SET_CITY_ERROR,
+  payload: message
 });
 export const enquiry = (data) => ({
   type: ENQUIRY,

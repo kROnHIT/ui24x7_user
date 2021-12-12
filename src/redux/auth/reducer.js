@@ -16,6 +16,8 @@ import {
   GET_CITY_SUCCESS,
   GET_CITY_ERROR,
   SET_CITY,
+  SET_CITY_SUCCESS,
+  SET_CITY_ERROR,
   ENQUIRY,
   ENQUIRY_SUCCESS,
   ENQUIRY_ERROR,
@@ -36,46 +38,50 @@ const INIT_STATE = {
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
     case CHECK_USER:
-      return { ...state, loading: true };
+      return {...state, loading: true};
     case CHECK_USER_SUCCESS:
-      return { ...state, loading: false, ...action.payload };
+      return {...state, loading: false, ...action.payload};
     case CHECK_USER_ERROR:
-      return { ...state, loading: false, ...action.payload };
+      return {...state, loading: false, ...action.payload};
     case LOGIN_WITH_PASSWORD:
-      return { ...state, loading: true };
+      return {...state, loading: true};
     case LOGIN_WITH_PASSWORD_SUCCESS:
-      return { ...state, loading: false, ...action.payload };
+      return {...state, loading: false, ...action.payload};
     case LOGIN_WITH_PASSWORD_ERROR:
-      return { ...state, loading: false, ...action.payload };
+      return {...state, loading: false, ...action.payload};
     case LOGOUT_USER:
-      return { ...state, user: null, error: '', loading: false };
+      return {...state, user: null, error: '', loading: false};
     case REGISTER_USER:
-      return { ...state, loading: true };
+      return {...state, loading: true};
     case REGISTER_USER_SUCCESS:
-      return { ...state, loading: false, ...action.payload };
+      return {...state, loading: false, ...action.payload};
     case REGISTER_USER_ERROR:
-      return { ...state, loading: false, ...action.payload };
+      return {...state, loading: false, ...action.payload};
     case GET_STATE:
-      return { ...state, loading: true };
+      return {...state, loading: true};
     case GET_STATE_SUCCESS:
-      return { ...state, loading: false, ...action.payload };
+      return {...state, loading: false, ...action.payload};
     case GET_STATE_ERROR:
-      return { ...state, loading: false, ...action.payload };
+      return {...state, loading: false, ...action.payload};
     case GET_CITY:
-      return { ...state, loading: true };
+      return {...state, loading: true};
     case GET_CITY_SUCCESS:
-      return { ...state, loading: false, ...action.payload };
+      return {...state, loading: false, ...action.payload};
     case GET_CITY_ERROR:
-      return { ...state, loading: false, ...action.payload };
+      return {...state, loading: false, ...action.payload};
     case SET_CITY:
-      return { ...state, setCity: action.payload };
+      return {...state, loading: true};
+    case SET_CITY_SUCCESS:
+      return {...state, loading: false, ...action.payload};
+    case SET_CITY_ERROR:
+      return {...state, loading: false, ...action.payload};
     case ENQUIRY:
-      return { ...state, loading: true };
+      return {...state, loading: true};
     case ENQUIRY_SUCCESS:
-      return { ...state, loading: false, ...action.payload };
+      return {...state, loading: false, ...action.payload};
     case ENQUIRY_ERROR:
-      return { ...state, loading: false, ...action.payload };
+      return {...state, loading: false, ...action.payload};
     default:
-      return { ...state };
+      return {...state};
   }
 };

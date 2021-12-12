@@ -152,7 +152,6 @@ class Header extends React.Component {
 
   render() {
     const {setCity} = this.props.auth;
-    console.log("newProps", this.props.auth);
     return (
       <View>
         <TopNavigation
