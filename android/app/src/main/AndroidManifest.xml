@@ -2,7 +2,8 @@
   package="com.ui24x7">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
       android:usesCleartextTraffic="true"
       android:name=".MainApplication"
@@ -11,6 +12,9 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+      <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB9L3FaC3c7YjrYVEt0-lBnFenVCHBL70E"/>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
