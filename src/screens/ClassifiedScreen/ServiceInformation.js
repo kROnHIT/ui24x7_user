@@ -13,13 +13,22 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import {
+  fetchEmergency,
+  serviceEnquiry,
+  serviceInformation,
+} from '../../redux/actions';
 import {Button, Spinner, Divider} from '@ui-kitten/components';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {useIsFocused} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import Toast, {DURATION} from 'react-native-easy-toast';
+import Header from '../TopHeader';
+import ServiceInformation from './ServiceInformation';
 
 const CallIcon = props => <Ionicons name="call" size={16} color={'#3182ce'} />;
 const SmsIcon = props => (
@@ -38,176 +47,61 @@ const MapIcon = props => (
   <Ionicons name="md-location" size={16} color={'#ffffff'} />
 );
 
-class ServiceInformation extends React.Component {
+export default Classified = props => {
+  const isFocused = useIsFocused();
+  return isFocused ? <ClassifiedWrapper {...props} /> : null;
+};
+
+class Classified extends React.Component {
   constructor(props) {
     super(props);
     const {auth} = this.props;
-    this.state = {};
+    this.state = {
+      enquiryModalVisible: false,
+      selectedService: '',
+      selectedServiceData: '',
+      firstName: auth.user.LOGIN_NAME ? auth.user.LOGIN_NAME : '',
+      lastName: '.',
+      email: auth.user.EMAIL ? auth.user.EMAIL : '',
+      mobile: auth.user.MOBILE_NUMBER ? auth.user.MOBILE_NUMBER : '',
+      message: '',
+      firstNameError: '',
+      emailError: '',
+      mobileError: '',
+      messageError: '',
+      serviceModalVisible: false,
+    };
   }
 
-  componentDidMount() {}
+  componentDidMount(){
+    const{serviceId} = this.props.route.params;
+    console.log('this.props', serviceId);
+  }
 
   render() {
-    console.log('newthis.props', this.props);
-    const {info} = this.props;
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.cardContainer}>
-          <View style={{flex: 1}}>
-            <Image
-              source={{
-                uri: `http://34.131.47.126:8080/PIC_COLLECTION/ayuktasecure/${info.IMAGES}`,
-              }}
-              style={{
-                height: 160,
-                width: 130,
-              }}
-            />
-          </View>
-          <View style={{flex: 2, paddingVertical: 10}}>
-            <Text
-              style={{
-                fontSize: 14,
-                fontWeight: '700',
-                color: '#4d4d4d',
-                marginBottom: 3,
-              }}>
-              {info.NAME}
-            </Text>
-            {info && info.TAG_LINE ? (
-              <Text
-                style={{
-                  fontSize: 12,
-                  color: '#4d4d4d',
-                  fontWeight: '600',
-                  marginBottom: 3,
-                }}>
-                {info.TAG_LINE}
-              </Text>
-            ) : null}
-            {info && info.ADDRESS ? (
-              <Text style={{fontSize: 12, color: '#4d4d4d', marginBottom: 3}}>
-                {info.ADDRESS}
-              </Text>
-            ) : null}
-            <Text style={{fontSize: 12, color: '#4d4d4d'}}>
-              {info.MOBILE_NUMBER}
-            </Text>
-            {info && info.EMAIL_ID && info.EMAIL_ID !== 'NA' ? (
-              <Text style={{fontSize: 12, color: '#4d4d4d'}}>
-                {info.EMAIL_ID}
-              </Text>
-            ) : null}
-            <View style={{flexDirection: 'row'}}>
-              {info.IS_VERIFIED === 1 ? (
-                <Image
-                  source={require('../../../asset/icons/verified.png')}
-                  resizeMode="contain"
-                  style={{
-                    width: 55,
-                    marginRight: 5,
-                  }}
-                />
-              ) : null}
-              {info.IS_TRUSTED === 1 ? (
-                <Image
-                  source={require('../../../asset/icons/trusted.png')}
-                  resizeMode="contain"
-                  style={{
-                    width: 55,
-                    marginRight: 5,
-                  }}
-                />
-              ) : null}
-              {info.IS_UI24X7 === 1 ? (
-                <Image
-                  source={require('../../../asset/icons/ui24x7.png')}
-                  resizeMode="contain"
-                  style={{
-                    width: 55,
-                    marginRight: 5,
-                  }}
-                />
-              ) : null}
-            </View>
-          </View>
-        </View>
-        {/* <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
-          <View style={{flexDirection: 'row'}}>
-            <Button
-              onPress={() => {
-                Linking.openURL(`tel:${info.MOBILE_NUMBER}`);
-              }}
-              style={{flex: 1, marginHorizontal: 2}}
-              size="tiny"
-              appearance="outline"
-              status="info"
-              accessoryLeft={CallIcon}>
-              Call Now
-            </Button>
-            <Button
-              onPress={() => {
-                Linking.openURL(`sms:${info.MOBILE_NUMBER}`);
-              }}
-              style={{flex: 1, marginHorizontal: 2}}
-              size="tiny"
-              status="primary"
-              accessoryLeft={SmsIcon}>
-              SMS
-            </Button>
-            <Button
-              onPress={() => {
-                Linking.openURL(`mailto:${info.EMAIL_ID}`);
-              }}
-              style={{flex: 1, marginHorizontal: 2}}
-              size="tiny"
-              status="primary"
-              accessoryLeft={EmailIcon}>
-              Email
-            </Button>
-          </View>
-          <View style={{flexDirection: 'row', marginTop: 4}}>
-            <Button
-              onPress={() => {
-                Linking.openURL(
-                  `whatsapp://send?text=hello&phone=${info.WHATSAPP_NUMBER}`,
-                );
-              }}
-              style={{flex: 1, marginHorizontal: 2}}
-              size="tiny"
-              appearance="outline"
-              status="info"
-              accessoryLeft={WhatsappIcon}>
-              Whatsapp
-            </Button>
-            <Button
-              onPress={() => this.openEnquiryModalToggle(info)}
-              style={{flex: 1, marginHorizontal: 2}}
-              size="tiny"
-              status="primary"
-              accessoryLeft={EnquiryIcon}>
-              Enquiry
-            </Button>
-            <Button
-              onPress={() => {
-                Linking.openURL(
-                  `https://www.google.com/maps/search/?api=1&query=${info.ADDRESS}`,
-                );
-              }}
-              style={{flex: 1, marginHorizontal: 2}}
-              size="tiny"
-              status="primary"
-              accessoryLeft={MapIcon}>
-              Map
-            </Button>
-          </View>
-        </View> */}
+        <Header props={this.props} />
+        <Text>sasasa</Text>
       </SafeAreaView>
     );
   }
 }
 
-export default ServiceInformation;
+const mapStateToProps = state => {
+  return {...state};
+};
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {fetchEmergency, serviceEnquiry, serviceInformation},
+    dispatch,
+  );
+
+const ClassifiedWrapper = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Classified);
 
 const {width, height} = Dimensions.get('screen');
 
@@ -215,12 +109,92 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  categoryContainer: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    marginTop: 10,
+    // height: height * 0.7,
+  },
   cardContainer: {
-    // flexDirection: 'row',
-    // flex: 1,
+    flexDirection: 'row',
+    flex: 1,
     backgroundColor: '#fff',
     marginBottom: 10,
     flexDirection: 'row',
     padding: 10,
+  },
+  centeredView: {
+    height: '53%',
+    marginTop: 'auto',
+    backgroundColor: '#ffffff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 10,
+    borderTopStartRadius: 20,
+    borderTopEndRadius: 20,
+  },
+  centeredView1: {
+    height: '94%',
+    marginTop: 'auto',
+    backgroundColor: '#ffffff',
+  },
+  centerIcon: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    position: 'absolute',
+    left: width * 0.39,
+    top: 13,
+    elevation: Platform.OS === 'android' ? 50 : 0,
+  },
+  centerIcon1: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    position: 'absolute',
+    textAlign: 'center',
+    left: width * 0.1,
+    top: 18,
+    elevation: Platform.OS === 'android' ? 50 : 0,
+  },
+  cardsWrapper: {
+    paddingBottom: 20,
+    width: '90%',
+    alignSelf: 'center',
+    backgroundColor: '#fff',
+    elevation: 2,
+    padding: 5,
+    // height: height * 0.68,
+    borderRadius: 10,
+    paddingHorizontal: 20,
+  },
+  text_footer: {
+    color: '#05375a',
+    fontSize: 16,
+    marginBottom: 2,
+    marginTop: 10,
+  },
+  action: {
+    flexDirection: 'row',
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  text_input: {
+    flex: 1,
+    paddingLeft: 10,
+    color: '#05375a',
+    padding: 0,
+    height: 35,
+  },
+  errorText: {
+    fontSize: 13,
+    color: '#e32f45',
   },
 });

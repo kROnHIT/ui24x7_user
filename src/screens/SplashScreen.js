@@ -3,7 +3,7 @@ import {View, ImageBackground, Image, StyleSheet, Animated} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {logoutUser, checkUser} from '../redux/actions';
+import {logoutUser, checkUser, chechSetCity} from '../redux/actions';
 import {useIsFocused} from '@react-navigation/native';
 
 export default SplashScreen = props => {
@@ -22,6 +22,7 @@ class Splash extends React.Component {
 
   componentDidMount() {
     this.checkUserData();
+    // this.checkSetCity();
     this._springAnimation();
   }
 
@@ -30,6 +31,23 @@ class Splash extends React.Component {
       toValue: 1,
       friction: 1,
     }).start();
+  };
+
+  checkSetCity = async () => {
+    try {
+      const valueString = await AsyncStorage.getItem('setCity');
+      const value = JSON.parse(valueString);
+      if (value && value !== null) {
+        console.log('settttt', value);
+        await this.props.chechSetCity({
+          value,
+          navigation: this.props.navigation,
+          callback: () => {
+            console.log('pppssprpor', this.props);
+          },
+        });
+      }
+    } catch (error) {}
   };
 
   checkUserData = async () => {
@@ -41,7 +59,7 @@ class Splash extends React.Component {
           value,
           navigation: this.props.navigation,
           callback: () => {
-            this.props.navigation.navigate('App', { screen: 'HomeScreen' });
+            this.props.navigation.navigate('App', {screen: 'HomeScreen'});
           },
         });
       }
@@ -84,6 +102,7 @@ const mapDispatchToProps = dispatch =>
     {
       checkUser,
       logoutUser,
+      chechSetCity
     },
     dispatch,
   );

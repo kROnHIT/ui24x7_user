@@ -21,6 +21,9 @@ import {
   ENQUIRY,
   ENQUIRY_SUCCESS,
   ENQUIRY_ERROR,
+  CHECK_SET_CITY,
+  CHECK_SET_CITY_SUCCESS,
+  CHECK_SET_CITY_ERROR,
 } from '../actions';
 
 const INIT_STATE = {
@@ -80,6 +83,12 @@ export default (state = INIT_STATE, action) => {
     case ENQUIRY_SUCCESS:
       return {...state, loading: false, ...action.payload};
     case ENQUIRY_ERROR:
+      return {...state, loading: false, ...action.payload};
+    case CHECK_SET_CITY:
+      return {...state, loading: true};
+    case CHECK_SET_CITY_SUCCESS:
+      return {...state, loading: false, ...action.payload};
+    case CHECK_SET_CITY_ERROR:
       return {...state, loading: false, ...action.payload};
     default:
       return {...state};

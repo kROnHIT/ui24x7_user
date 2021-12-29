@@ -21,6 +21,9 @@ import {
   ENQUIRY,
   ENQUIRY_SUCCESS,
   ENQUIRY_ERROR,
+  CHECK_SET_CITY,
+  CHECK_SET_CITY_SUCCESS,
+  CHECK_SET_CITY_ERROR,
 } from '../actions';
 
 export const checkUser = (data) => ({
@@ -110,5 +113,17 @@ export const enquirySuccess = (items) => ({
 });
 export const enquiryError = (message) => ({
   type: ENQUIRY_ERROR,
+  payload: message
+});
+export const chechSetCity = (data) => ({
+  type: CHECK_SET_CITY,
+  payload: data
+});
+export const chechSetCitySuccess = (items) => ({
+  type: CHECK_SET_CITY_SUCCESS,
+  payload: items
+});
+export const chechSetCityError = (message) => ({
+  type: CHECK_SET_CITY_ERROR,
   payload: message
 });

@@ -11,6 +11,7 @@ import {
   GET_CITY,
   ENQUIRY,
   SET_CITY,
+  CHECK_SET_CITY
 } from '../actions';
 
 import {
@@ -110,7 +111,6 @@ const registerUserAsync = async data => {
 
 function* registerUser(action) {
   try {
-    console.log('action', action);
     let Res1 = yield call(registerUserAsync, action.payload.data);
     console.log('Res1', Res1);
     if (Res1 && Res1.Statuscode === 1) {
@@ -153,6 +153,7 @@ const getStateAsync = async () => {
       'Content-Type': 'application/json',
     },
   });
+  console.log('resp', resp.json());
   return resp.json();
 };
 
@@ -268,8 +269,8 @@ function* setCity(action) {
       yield put(setCitySuccess({success: true, setCity: action.payload}));
     } else {
       let Res = yield call(getStateAsync);
+      console.log('actionaction', Res);
       if (Res && Res.Statuscode === 1) {
-        console.log('actionaction', Res);
         var index = Res.LoginResponse.find(
           p => p.STATE_NAME == action.payload.state,
         );
@@ -279,7 +280,7 @@ function* setCity(action) {
         var index1 = Res1.LoginResponse.find(
           p => p.CITY_NAME == action.payload.city,
         );
-        AsyncStorage.setItem('setCity', JSON.stringify(Res.loginBean));
+        AsyncStorage.setItem('setCity', JSON.stringify(index1));
         yield put(setCitySuccess({success: true, setCity: index1}));
         console.log('index', index1);
       } else {
@@ -294,6 +295,14 @@ function* setCity(action) {
       }),
     );
   }
+}
+
+function* chechSetCity(action) {
+  console.log('actionaaaaa', action);
+  try {
+    yield put(loginWithPasswordSuccess({setCity: action.payload.value}));
+    action.payload.callback();
+  } catch (error) {}
 }
 
 export function* watchCheckUser() {
@@ -320,6 +329,9 @@ export function* watchEnquiry() {
 export function* watchSetCity() {
   yield takeEvery(SET_CITY, setCity);
 }
+export function* watchChechSetCity() {
+  yield takeEvery(CHECK_SET_CITY, chechSetCity);
+}
 
 export default function* rootSaga() {
   yield all([
@@ -331,5 +343,6 @@ export default function* rootSaga() {
     fork(watchGetCity),
     fork(watchEnquiry),
     fork(watchSetCity),
+    fork(watchChechSetCity),
   ]);
 }

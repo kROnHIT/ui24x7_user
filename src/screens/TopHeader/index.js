@@ -97,7 +97,7 @@ class Header extends React.Component {
     if (state) {
       let stateListDate = state.map((value, key) => {
         return (
-          <TouchableOpacity onPress={() => this.openCityModal(value.STATE_ID)}>
+          <TouchableOpacity key={key} onPress={() => this.openCityModal(value.STATE_ID)}>
             <View style={{height: 30, marginBottom: 5}}>
               <Text category="h6" style={{}}>
                 {value.STATE_NAME}
@@ -152,6 +152,7 @@ class Header extends React.Component {
 
   render() {
     const {setCity} = this.props.auth;
+    console.log('props', this.props);
     return (
       <View>
         <TopNavigation

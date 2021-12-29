@@ -17,6 +17,7 @@ import Classified from '../screens/ClassifiedScreen';
 import Splash from '../screens/SplashScreen';
 import TopHeader from '../screens/TopHeader';
 import SearchResult from '../screens/HomeScreen/SearchResult';
+import ServiceInformation from '../screens/ClassifiedScreen/ServiceInformation';
 
 const Tabs = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -81,6 +82,7 @@ function HomeStackScreen() {
       <HomeStack.Screen name="Enquiry" component={Enquiry} />
       <HomeStack.Screen name="Classified" component={Classified} />
       <HomeStack.Screen name="SearchResult" component={SearchResult} />
+      <HomeStack.Screen name="ServiceInformation" component={ServiceInformation} />
     </HomeStack.Navigator>
   );
 }

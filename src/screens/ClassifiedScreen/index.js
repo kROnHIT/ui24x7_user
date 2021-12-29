@@ -149,7 +149,7 @@ class Classified extends React.Component {
     if (classified.emergencyData && classified.emergencyData.length !== 0) {
       const renderItem = ({item}) => {
         return (
-          <TouchableOpacity onPress={() => this.openServiceModalToggle(item)}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('ServiceInformation', { 'serviceId': item.SERVICES_ID })}>
             <View style={styles.cardContainer}>
               <View style={{flex: 1}}>
                 <Image

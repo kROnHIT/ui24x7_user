@@ -34,10 +34,13 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
+    console.log('setCity', this.props.auth.setCity);
     if (this.props.auth.setCity.length === 0) {
       Geolocation.getCurrentPosition(position => {
         // console.log('position', position);
         Geocoder.geocodePosition({
+          // lat: 23.7103367,
+          // lng: 86.397799,
           lat: 23.3754286,
           lng: 85.3085613,
           // lat: position.coords.latitude,
@@ -45,7 +48,7 @@ class Home extends React.Component {
         })
           .then(res => {
             console.log('res', res[0]);
-            this.props.setCity({city: res[0].locality, state: res[0].adminArea});
+            this.props.setCity({city: res[0].subAdminArea, state: res[0].adminArea});
           })
           .catch(err => console.log(err));
       });

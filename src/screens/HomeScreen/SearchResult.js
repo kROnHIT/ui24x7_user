@@ -38,7 +38,7 @@ class Home extends React.Component {
     if (searchResult && searchResult.length !== 0) {
       let resultList = searchResult.map((value, key) => {
         return (
-          <View style={{padding: 15}}>
+          <View key={key} style={{padding: 15}}>
             <Text style={{color: '#2E2E2E', fontSize: 16, fontWeight: '700'}}>
               {value.NAME}
             </Text>
