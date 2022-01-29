@@ -36,8 +36,17 @@ class Home extends React.Component {
   componentDidMount() {
     console.log('setCity', this.props.auth.setCity);
     if (this.props.auth.setCity.length === 0) {
+      console.log('asdsadsaas', Geolocation);
+      // Geolocation.getCurrentPosition(
+      //   position => {
+      //     const initialPosition = JSON.stringify(position);
+      //     console.log(initialPosition);
+      //   },
+      //   error => Alert.alert('Error', JSON.stringify(error)),
+      //   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+      // );
       Geolocation.getCurrentPosition(position => {
-        // console.log('position', position);
+        console.log('position', position);
         Geocoder.geocodePosition({
           // lat: 23.7103367,
           // lng: 86.397799,

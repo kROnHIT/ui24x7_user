@@ -19,7 +19,7 @@ import {
 
 const fetchEmergencyAsync = async data => {
   const resp = await fetch(
-    `http://34.131.47.126:8080/upcharindia/ViewEmergencyServiceACToCity?${data}`,
+    `https://ui24x7.com/upcharindia/ViewEmergencyServiceACToCity?${data}`,
     {
       method: 'GET',
       headers: {
@@ -57,7 +57,7 @@ function* fetchEmergency(action) {
 
 const serviceEnquiryAsync = async data => {
   const resp = await fetch(
-    `http://34.131.47.126:8080/upcharindia/SendServiceEnquiry?${data}`,
+    `https://ui24x7.com/upcharindia/SendServiceEnquiry?${data}`,
     {
       method: 'GET',
       headers: {
@@ -98,7 +98,7 @@ function* serviceEnquiry(action) {
 
 const serviceInformationAsync = async data => {
   const resp = await fetch(
-    `http://34.131.47.126:8080/upcharindia/SingleServiceFullInformation?SERVICES_ID=${data}`,
+    `https://ui24x7.com/upcharindia/SingleServiceFullInformation?SERVICES_ID=${data}`,
     {
       method: 'GET',
       headers: {
@@ -136,7 +136,7 @@ function* serviceInformation(action) {
 
 const searchServiceAsync = async data => {
   const resp = await fetch(
-    `http://34.131.47.126:8080/upcharindia/SearchData?${data}`,
+    `https://ui24x7.com/upcharindia/SearchData?${data}`,
     {
       method: 'GET',
       headers: {

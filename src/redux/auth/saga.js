@@ -32,7 +32,7 @@ import {
 const loginWithPasswordAsync = async data => {
   const {userName, password} = data;
   const resp = await fetch(
-    `http://34.131.47.126:8080/upcharindia/CheckLoginDetails?USERNAME=${userName}&PASSWORD=${password}`,
+    `https://ui24x7.com/upcharindia/CheckLoginDetails?USERNAME=${userName}&PASSWORD=${password}`,
     {
       method: 'GET',
       headers: {
@@ -97,7 +97,7 @@ function* checkUser(action) {
 
 const registerUserAsync = async data => {
   const resp = await fetch(
-    `http://34.131.47.126:8080/upcharindia/AddUser?${data}`,
+    `https://ui24x7.com/upcharindia/AddUser?${data}`,
     {
       method: 'GET',
       headers: {
@@ -146,20 +146,20 @@ function* registerUser(action) {
 }
 
 const getStateAsync = async () => {
-  const resp = await fetch('http://34.131.47.126:8080/upcharindia/StateList', {
+  const resp = await fetch('https://ui24x7.com/upcharindia/StateList', {
     method: 'GET',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
   });
-  console.log('resp', resp.json());
   return resp.json();
 };
 
 function* getState(action) {
   try {
     let Res = yield call(getStateAsync);
+    console.log('stateres', Res);
     if (Res) {
       yield put(getStateSuccess({success: true, state: Res.LoginResponse}));
     } else {
@@ -178,7 +178,7 @@ function* getState(action) {
 
 const getCityAsync = async city => {
   const resp = await fetch(
-    'http://34.131.47.126:8080/upcharindia/CityList?STATE_ID=' + city,
+    'https://ui24x7.com/upcharindia/CityList?STATE_ID=' + city,
     {
       method: 'GET',
       headers: {
@@ -211,7 +211,7 @@ function* getCity(action) {
 
 const enquiryAsync = async data => {
   const resp = await fetch(
-    `http://34.131.47.126:8080/upcharindia/GenerateEnquiry?${data}`,
+    `https://ui24x7.com/upcharindia/GenerateEnquiry?${data}`,
     {
       method: 'GET',
       headers: {
@@ -250,7 +250,7 @@ function* enquiry(action) {
 
 const setCityAsync = async city => {
   const resp = await fetch(
-    'http://34.131.47.126:8080/upcharindia/CityList?STATE_ID=' + city,
+    'https://ui24x7.com/upcharindia/CityList?STATE_ID=' + city,
     {
       method: 'GET',
       headers: {
@@ -263,11 +263,12 @@ const setCityAsync = async city => {
 };
 
 function* setCity(action) {
-  console.log('action', action);
+  console.log('actionaaa', action);
   try {
     if (action.payload.CITY_ID) {
       yield put(setCitySuccess({success: true, setCity: action.payload}));
     } else {
+      console.log('aspopopop');
       let Res = yield call(getStateAsync);
       console.log('actionaction', Res);
       if (Res && Res.Statuscode === 1) {
